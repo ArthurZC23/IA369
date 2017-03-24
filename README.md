@@ -5,5 +5,5 @@ Projeto final da disciplina IA369
 
 * Alexandre Lopes RA:
 * Arthur Zanatta da Costa RA: 116194
-* Fabio Perez RA: 
+* Fabio Perez RA: 105967
 
