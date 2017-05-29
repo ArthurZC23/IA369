@@ -1,0 +1,33 @@
+body {background: #676}
+
+h1 {
+  font-size: 120px;
+  text-align: center;
+  margin-top: 50px;
+  font-family: helvetica, sans-serif;
+  letter-spacing: -8;
+  color: black;
+  text-transform: lowercase;
+  text-shadow: 2px 3px 5px white;
+}
+
+h2 {
+
+  font: 100px;
+  text-align: center;
+  margin-top: 50 px;
+  font-fami: helvetica, sans-serif;
+  letter-spacing: -2;
+  color: black;
+  text-transform: lowercase;
+  text-shadow: 1px 1px 1px white;
+
+}
+
+#authors {
+
+
+
+
+
+}
