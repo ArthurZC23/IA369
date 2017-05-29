@@ -1,4 +1,9 @@
-body {background: #676}
+body {
+
+  background: #676;
+  width: 600px;
+  margin: 20px auto;
+}
 
 h1 {
   font-size: 120px;
@@ -20,14 +25,28 @@ h2 {
   letter-spacing: -2;
   color: black;
   text-transform: lowercase;
-  text-shadow: 1px 1px 1px white;
+  text-shadow: 1px 0px -1px white;
 
 }
 
-#authors {
+.author{
 
+  margin: 10px 20px 20px 20px;
+  clear: both;
 
+}
 
+.authorImage{
 
+float: left;
+
+}
+
+.authorDescription{
+
+  float: right;
+  width: 425px;
+  height: 150px;
+  font-family: helvetica, sans-serif;
 
 }
