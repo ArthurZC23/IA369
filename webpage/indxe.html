@@ -1,7 +1,10 @@
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
   <link rel="stylesheet" href="css/style.css" />
+  <script type=text/javascript src="js/initialization.js"></script>
 </head>
 <body>
   <h1>Walking Safe</h1>
@@ -11,15 +14,17 @@
   <div>
     <h2>How to use it</h2>
   </div>
-  <div id="map">
-    Put map
+  <div>
+    <h2>Map</h2>
+    <div id="map">
+      <script asyc defer src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+    </div>
   </div>
   <div>
     <h2>Data</h2>
   </div>
   <div>
     <h2>Authors</h2>
-
 
     <div class="author">
       <div>
@@ -29,7 +34,7 @@
         <p>Alexandre Lopes</p>
         <p>Bla bla</p>
       </div>
-  </div>
+    </div>
 
   <div class="author">
     <div>
@@ -38,7 +43,7 @@
     <div class="authorDescription">
       <p>Arthur Zanatta da Costa</p>
       <p>Bla bla</p>
-    </div>
+      </div>
 </div>
 
 <div class="author">
@@ -48,9 +53,9 @@
   <div class="authorDescription">
     <p>Fabio Perez</p>
     <p>Bla bla</p>
-  </div>
-</div>
+    </div>
 
-</>
+</div>
+</div>
 </body>
 </html>

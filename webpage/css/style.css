@@ -19,13 +19,21 @@ h1 {
 h2 {
 
   font: 100px;
-  text-align: center;
+  text-align: left;
   margin-top: 50 px;
-  font-fami: helvetica, sans-serif;
+  font-family: helvetica, sans-serif;
   letter-spacing: -2;
   color: black;
   text-transform: lowercase;
   text-shadow: 1px 0px -1px white;
+
+}
+
+#map {
+
+width: 700px;
+height: 500px;
+margin: auto;
 
 }
 
