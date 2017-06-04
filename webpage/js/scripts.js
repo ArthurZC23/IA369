@@ -23,11 +23,6 @@ function myMap() {
 
     });
 
-  var centerControlDiv = document.createElement('div');
-  var centerControl = new CenterControl(centerControlDiv, map);
-  centerControlDiv.index = 1;
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-
   safetyCircle = new google.maps.Circle({
   strokeColor: '#000000',
   strokeOpacity: 0.5,
@@ -214,8 +209,7 @@ function computeDistanceBetween(myLocation, crimeLocation){
 
 //Get SF crime data
 $.getJSON("https://raw.githubusercontent.com/ArthurZC23/IA369/arthur/webpage/resources/data/PDI/sfCrimeTourist2016.json?token=ATPc0w4gYSU0lqtyrFKcN2X63pAANSCVks5ZPczfwA%3D%3D", function(data){
-  //data is the JSON string
-  //alert('success');
+
   crimeData = data;
   var loc;
   for (var i = 0; i < crimeData.length; i++){
@@ -238,35 +232,4 @@ $.getJSON("https://raw.githubusercontent.com/ArthurZC23/IA369/arthur/webpage/res
 function updateRadius(circle, radius){
 
   circle.set('radius', parseInt(radius, 10));
-}
-
-function CenterControl(controlDiv, map) {
-
-  // Set CSS for the control border.
-  var controlUI = document.createElement('div');
-  controlUI.style.backgroundColor = '#fff';
-  controlUI.style.border = '2px solid #fff';
-  controlUI.style.borderRadius = '3px';
-  controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-  controlUI.style.cursor = 'pointer';
-  controlUI.style.marginBottom = '22px';
-  controlUI.style.textAlign = 'center';
-  controlUI.title = 'Click to recenter the map  in SF';
-  controlDiv.appendChild(controlUI);
-
-  // Set CSS for the control interior.
-  var controlText = document.createElement('div');
-  controlText.style.color = 'rgb(25,25,25)';
-  controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-  controlText.style.fontSize = '16px';
-  controlText.style.lineHeight = '38px';
-  controlText.style.paddingLeft = '5px';
-  controlText.style.paddingRight = '5px';
-  controlText.innerHTML = 'Center Map in SF';
-  controlUI.appendChild(controlText);
-
-  controlUI.addEventListener('click', function() {
-    map.setCenter(sanFrancisco);
-    map.setZoom(13)
-  });
 }
