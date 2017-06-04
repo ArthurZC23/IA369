@@ -1,6 +1,6 @@
 body {
 
-  background: #676;
+  background: #ABA;
   width: 600px;
   margin: 20px auto;
 }
@@ -47,7 +47,7 @@ svg{
 }
 
 .bar{
-  fill: steelblue;
+  fill: #A00;
 }
 
 .bar:hover{
