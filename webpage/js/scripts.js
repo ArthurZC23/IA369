@@ -219,7 +219,7 @@ function computeDistanceBetween(myLocation, crimeLocation){
 }
 
 //Get SF crime data
-$.getJSON("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/PDI/sfCrimeTourist2016.json", function(data){
+$.getJSON("https://raw.githubusercontent.com/ArthurZC23/IA369/arthur/webpage/resources/data/PDI/sfCrimeTourist2016.json?token=ATPc0w4gYSU0lqtyrFKcN2X63pAANSCVks5ZPczfwA%3D%3D", function(data){
   //data is the JSON string
   //alert('success');
   crimeData = data;
