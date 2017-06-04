@@ -3,9 +3,6 @@ var safetyCircle;
 var sanFrancisco = {lat: 37.773972, lng: -122.431297};
 var crimeData = new Array()
 var crimeLocations = new Array();
-var dangerAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/danger.mp3");
-var carefulAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/careful.mp3");
-var safeAudio = new Audio("https://raw.githubusercontent.com/ArthurZC23/T3/master/project/data/Audio/safe.mp3");
 var crimeType = {};
 var relevantCrimesIdx;
 var relevantCrimes;
@@ -188,15 +185,12 @@ function style_circle(dangerLevel){
 
   if (dangerLevel <= 1000){
     safetyCircle.set('fillColor', '#00FF00')
-    safeAudio.play()
   }
   else if (dangerLevel >= 5000){
     safetyCircle.set('fillColor', '#FF0000')
-    dangerAudio.play()
   }
   else{
     safetyCircle.set('fillColor', '#FFFF00')
-    carefulAudio.play()
   }
 }
 
