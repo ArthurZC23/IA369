@@ -1,7 +1,7 @@
 var map;
 var safetyCircle;
 var sanFrancisco = {lat: 37.773972, lng: -122.431297};
-var crimeData = new Array()
+var crimeData = new Array();
 var crimeLocations = new Array();
 var crimeType = {};
 var relevantCrimesIdx;
@@ -20,18 +20,17 @@ function myMap() {
   var marker = new google.maps.Marker({
     position: latLng,
     map: map
-
     });
 
   safetyCircle = new google.maps.Circle({
-  strokeColor: '#000000',
-  strokeOpacity: 0.5,
-  strokeWeight: 0.5,
-  fillColor: '#FFFFFF',
-  fillOpacity: 0.35,
-  map: map,
-  center: latLng,
-  radius: 1000 //Radius is in m
+    strokeColor: '#000000',
+    strokeOpacity: 0.5,
+    strokeWeight: 0.5,
+    fillColor: '#FFFFFF',
+    fillOpacity: 0.35,
+    map: map,
+    center: latLng,
+    radius: 1000 //Radius is in m
   });
 
   google.maps.event.addListener(map, 'click', function(event) {
@@ -46,13 +45,13 @@ function myMap() {
 
 function dangerEstimation(myLocation){
 
-  var dangerLevel = 0
+  var dangerLevel = 0;
   relevantCrimesIdx = new Array();
-  threshold = safetyCircle.get('radius')/1000
+  threshold = safetyCircle.get('radius')/1000;
   for(var i = 0; i<crimeLocations.length; i++){
     dist = computeDistanceBetween(myLocation, crimeLocations[i])
     if(dist < threshold){
-      dangerLevel += 1
+      dangerLevel += 1;
       relevantCrimesIdx.push(i)
     }
   }
@@ -65,7 +64,7 @@ function visualizeCrime(relevantCrimesIdx){
   relevantCrimes = new Array();
 
   //Filtered crimes
-  if (relevantCrimesIdx){
+  if (relevantCrimesIdx) {
     filteredCrimeType = {};
     for (idx in relevantCrimesIdx){
       if (!(crimeData[idx].Category in filteredCrimeType)){
