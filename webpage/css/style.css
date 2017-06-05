@@ -1,7 +1,7 @@
 body {
 
-  background: #676;
-  width: 600px;
+  background: #ABA;
+  width: 1000px;
   margin: 20px auto;
 }
 
@@ -29,12 +29,39 @@ h2 {
 
 }
 
+svg{
+
+  display: block;
+  margin: auto;
+}
+
 #map {
 
-width: 700px;
-height: 500px;
-margin: auto;
+  min-width: 500px;
+  width: 80%;
+  height: 400px;
+  margin: auto;
+  margin-top: 100px;
+  margin-top: 100px;
 
+}
+
+.bar{
+  fill: #A00;
+}
+
+.bar:hover{
+  fill: brown;
+}
+
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
 
 .author{
@@ -46,7 +73,7 @@ margin: auto;
 
 .authorImage{
 
-float: left;
+  float: left;
 
 }
 
