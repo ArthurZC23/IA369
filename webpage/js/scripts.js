@@ -16,8 +16,8 @@ var citiesGeo = {
   }
 };
 var crimeUrl = {
-  "sanfrancisco": "https://raw.githubusercontent.com/ArthurZC23/IA369/more_cities/webpage/resources/data/sanfrancisco.json?token=ATPc04q2jrSGobosVxy11QXW4sIqwXBxks5ZSqW6wA%3D%3D",
-  "campinas": "https://raw.githubusercontent.com/ArthurZC23/IA369/more_cities/webpage/resources/data/campinas.json?token=ATPc0yGKvbbV2xTxzecgyE-H5kl5PEBtks5ZSqZtwA%3D%3D"
+  "sanfrancisco": "https://raw.githubusercontent.com/ArthurZC23/IA369/more_cities/webpage/resources/data/sanfrancisco.json?token=ATPc0w8Mx_j3UDFCsqUO3OmMRuUxjz3iks5ZSsX5wA%3D%3D",
+  "campinas": "https://raw.githubusercontent.com/ArthurZC23/IA369/more_cities/webpage/resources/data/campinas.json?token=ATPc0yzu2l3brn25taBc8SxhhYlLM0Leks5ZSsSawA%3D%3D"
 };
 var crimeData = new Array();
 var crimeLocations = new Array();
