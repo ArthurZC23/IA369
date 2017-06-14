@@ -252,6 +252,7 @@ function fetchData(city) {
     }
     visualizeCrime(null); //Display all crimes of the city
   });
+}
 
 function updateRadius(circle, radius){
 
