@@ -1,6 +1,6 @@
 var map;
 var safetyCircle;
-var city = "sanfrancisco";
+var city = "campinas";
 var citiesGeo = {
   "sanfrancisco": {
     "lat": 37.773972,
