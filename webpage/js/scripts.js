@@ -1,6 +1,34 @@
 var map;
 var safetyCircle;
-var sanFrancisco = {lat: 37.773972, lng: -122.431297};
+var city;
+var citiesGeo ={
+  "sanfrancisco": {
+    lat: 37.773972,
+    lng: -122.431297
+  }
+  "saopaulo": {
+    lat: -23.533773,
+    lng: -46.625290
+  }
+  "campinas": {
+    lat: -22.907104,
+    lng: -47.063240
+  }
+}
+var crimeData = {
+  "sanfrancisco": {
+    url:
+  }
+  "saopaulo": {
+    url:
+  }
+  "campinas": {
+    url:
+  }
+}
+
+
+
 var crimeData = new Array();
 var crimeLocations = new Array();
 var crimeType = {};
@@ -9,7 +37,8 @@ var relevantCrimes;
 
 function myMap() {
 
-  var latLng = new google.maps.LatLng(sanFrancisco);
+
+  var latLng = new google.maps.LatLng(citiesGeo["sanfrancisco"]);
   var mapOptions = {
     center: latLng,
     zoom: 13,
