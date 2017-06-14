@@ -3,16 +3,16 @@ var safetyCircle;
 var city = "sanfrancisco";
 var citiesGeo ={
   "sanfrancisco": {
-    lat: 37.773972,
-    lng: -122.431297
+    "lat": 37.773972,
+    "lng": -122.431297
   },
   "saopaulo": {
-    lat: -23.533773,
-    lng: -46.625290
+    "lat": -23.533773,
+    "lng": -46.625290
   },
   "campinas": {
-    lat: -22.907104,
-    lng: -47.063240
+    "lat": -22.907104,
+    "lng": -47.063240
   }
 }
 var crimeUrl = {
@@ -237,11 +237,12 @@ function fetchData(city) {
     crimeData = data;
     var loc;
     for (var i = 0; i < crimeData.length; i++){
+
       //Get crime location
-      loc = crimeData[i].Location;
-      loc = loc.substring(1, loc.length-1);
-      loc = JSON.parse("[" + loc + "]");
-      crimeLocations[i] = [loc[0], loc[1]];
+      lat = crimeData[i].lat
+      lng = crimeData[i].lng
+      crimeLocations[i] = [lat, lng]
+
       //Count crime types
       if (!(crimeData[i].Category in crimeType)){
         crimeType[crimeData[i].Category] = 1;
