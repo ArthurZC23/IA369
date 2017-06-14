@@ -1,6 +1,6 @@
 var map;
 var safetyCircle;
-var city;
+var city = "sanfrancisco";
 var citiesGeo ={
   "sanfrancisco": {
     lat: 37.773972,
@@ -29,7 +29,7 @@ var relevantCrimes;
 function myMap() {
 
   //Default initialization with San Francisco
-  var latLng = new google.maps.LatLng(citiesGeo["sanfrancisco"]);
+  var latLng = new google.maps.LatLng(citiesGeo[city]);
   var mapOptions = {
     center: latLng,
     zoom: 13,
@@ -61,7 +61,7 @@ function myMap() {
 
   });
 
-  fetchData("sanfrancisco");
+  fetchData(city);
 
 }
 
