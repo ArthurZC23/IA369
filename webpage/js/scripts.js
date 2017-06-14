@@ -5,29 +5,20 @@ var citiesGeo ={
   "sanfrancisco": {
     lat: 37.773972,
     lng: -122.431297
-  }
+  },
   "saopaulo": {
     lat: -23.533773,
     lng: -46.625290
-  }
+  },
   "campinas": {
     lat: -22.907104,
     lng: -47.063240
   }
 }
-var crimeData = {
-  "sanfrancisco": {
-    url:
-  }
-  "saopaulo": {
-    url:
-  }
-  "campinas": {
-    url:
-  }
+var crimeUrl = {
+  "sanfrancisco": "https://raw.githubusercontent.com/ArthurZC23/IA369/more_cities/webpage/resources/data/sanfrancisco.json?token=ATPc04q2jrSGobosVxy11QXW4sIqwXBxks5ZSqW6wA%3D%3D",
+  "campinas": "https://raw.githubusercontent.com/ArthurZC23/IA369/more_cities/webpage/resources/data/campinas.json?token=ATPc0yGKvbbV2xTxzecgyE-H5kl5PEBtks5ZSqZtwA%3D%3D"
 }
-
-
 
 var crimeData = new Array();
 var crimeLocations = new Array();
@@ -37,7 +28,7 @@ var relevantCrimes;
 
 function myMap() {
 
-
+  //Default initialization with San Francisco
   var latLng = new google.maps.LatLng(citiesGeo["sanfrancisco"]);
   var mapOptions = {
     center: latLng,
@@ -69,6 +60,8 @@ function myMap() {
       style_circle(dangerLevel);
 
   });
+
+  fetchData("sanfrancisco");
 
 }
 
@@ -236,26 +229,29 @@ function computeDistanceBetween(myLocation, crimeLocation){
 }
 
 //Get SF crime data
-$.getJSON("https://raw.githubusercontent.com/ArthurZC23/IA369/arthur/webpage/resources/data/PDI/sfCrimeTourist2016.json?token=ATPc0w4gYSU0lqtyrFKcN2X63pAANSCVks5ZPczfwA%3D%3D", function(data){
 
-  crimeData = data;
-  var loc;
-  for (var i = 0; i < crimeData.length; i++){
-    //Get crime location
-    loc = crimeData[i].Location;
-    loc = loc.substring(1, loc.length-1);
-    loc = JSON.parse("[" + loc + "]");
-    crimeLocations[i] = [loc[0], loc[1]];
-    //Count crime types
-    if (!(crimeData[i].Category in crimeType)){
-      crimeType[crimeData[i].Category] = 1;
+function fetchData(city) {
+
+  $.getJSON(crimeUrl[city], function(data){
+
+    crimeData = data;
+    var loc;
+    for (var i = 0; i < crimeData.length; i++){
+      //Get crime location
+      loc = crimeData[i].Location;
+      loc = loc.substring(1, loc.length-1);
+      loc = JSON.parse("[" + loc + "]");
+      crimeLocations[i] = [loc[0], loc[1]];
+      //Count crime types
+      if (!(crimeData[i].Category in crimeType)){
+        crimeType[crimeData[i].Category] = 1;
+      }
+      else{
+        crimeType[data[i].Category] += 1;
+      }
     }
-    else{
-      crimeType[data[i].Category] += 1;
-    }
-  }
-  visualizeCrime(null);
-});
+    visualizeCrime(null); //Display all crimes of the city
+  });
 
 function updateRadius(circle, radius){
 
