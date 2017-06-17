@@ -53,14 +53,44 @@ function myMap() {
   });
 
   google.maps.event.addListener(map, 'click', function(event) {
-      safetyCircle.set('center', event.latLng);
-      marker.set('position', event.latLng);
-      dangerLevel = dangerEstimation(event.latLng);
-      style_circle(dangerLevel);
-
+    setDangerCircle(event.latLng, marker);
   });
 
   fetchData(city);
+
+  // Create the search box
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    var place = places[0];
+    if (!place.geometry) {
+      console.log("Returned place contains no geometry");
+      return;
+    }
+    map.setCenter(place.geometry.location);
+    setDangerCircle(place.geometry.location, marker);
+  });
+
+}
+
+function setDangerCircle(location, marker) {
+  safetyCircle.set('center', location);
+  marker.set('position', location);
+  dangerLevel = dangerEstimation(location);
+  style_circle(dangerLevel);
 }
 
 function dangerEstimation(myLocation) {
