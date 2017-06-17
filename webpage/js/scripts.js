@@ -1,6 +1,9 @@
 var map;
 var safetyCircle;
 var city = "sanfrancisco";
+var cities = {
+  "1b9ea3c094d3ac23c9a3afa8cd4d8a41f05de50a": "sanfrancisco",
+"36e8e2a4dd50dfc3deaf236d5d84fb7ee3f77e4c": "campinas"}
 var citiesGeo = {
   "sanfrancisco": {
     "lat": 37.773972,
@@ -83,6 +86,16 @@ function myMap() {
     }
     map.setCenter(place.geometry.location);
 
+    //Check if data about this city is available
+    console.log(place);
+
+    if (place.id in cities){
+      setDangerCircle(place.geometry.location, marker);
+      fetchData(cities[place.id]);
+    }
+    else {
+      alert("There is no data available for this city")
+    }
 
   });
 
@@ -299,3 +312,19 @@ function updateRadius(circle, radius){
 
   circle.set('radius', parseInt(radius, 10));
 }
+
+function removeAccents(strAccents) {
+   var strAccents = strAccents.split('');
+   var strAccentsOut = new Array();
+   var strAccentsLen = strAccents.length;
+   var accents = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+   var accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
+   for (var y = 0; y < strAccentsLen; y++) {
+     if (accents.indexOf(strAccents[y]) != -1) {
+       strAccentsOut[y] = accentsOut.substr(accents.indexOf(strAccents[y]), 1);
+     } else
+       strAccentsOut[y] = strAccents[y];
+   }
+   strAccentsOut = strAccentsOut.join('');
+   return strAccentsOut;
+ }
