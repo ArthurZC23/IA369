@@ -53,14 +53,18 @@ function myMap() {
   });
 
   google.maps.event.addListener(map, 'click', function(event) {
-      safetyCircle.set('center', event.latLng);
-      marker.set('position', event.latLng);
-      dangerLevel = dangerEstimation(event.latLng);
-      style_circle(dangerLevel);
-
+    setDangerCircle(event.latLng, marker);
   });
 
   fetchData(city);
+
+}
+
+function setDangerCircle(location, marker) {
+  safetyCircle.set('center', location);
+  marker.set('position', location);
+  dangerLevel = dangerEstimation(location);
+  style_circle(dangerLevel);
 }
 
 function dangerEstimation(myLocation) {
