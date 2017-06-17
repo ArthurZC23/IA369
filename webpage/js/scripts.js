@@ -2,8 +2,8 @@ var map;
 var safetyCircle;
 var city = "sanfrancisco";
 var cities = {
-  "1b9ea3c094d3ac23c9a3afa8cd4d8a41f05de50a": "sanfrancisco",
-"36e8e2a4dd50dfc3deaf236d5d84fb7ee3f77e4c": "campinas"}
+  "ChIJIQBpAG2ahYAR_6128GcTUEo": "sanfrancisco",
+  "ChIJJWNL5x3GyJQRKsJ4IWo65Rc": "campinas"}
 var citiesGeo = {
   "sanfrancisco": {
     "lat": 37.773972,
@@ -89,9 +89,9 @@ function myMap() {
     //Check if data about this city is available
     console.log(place);
 
-    if (place.id in cities){
+    if (place.place_id in cities){
       setDangerCircle(place.geometry.location, marker);
-      fetchData(cities[place.id]);
+      fetchData(cities[place.place_id]);
     }
     else {
       alert("There is no data available for this city")
