@@ -86,9 +86,6 @@ function myMap() {
     }
     map.setCenter(place.geometry.location);
 
-    //Check if data about this city is available
-    console.log(place);
-
     if (place.place_id in cities){
       setDangerCircle(place.geometry.location, marker);
       fetchData(cities[place.place_id]);
@@ -273,39 +270,36 @@ function computeDistanceBetween(myLocation, crimeLocation) {
 //Get SF crime data
 function fetchData(city) {
 
-  // console.log("fetchData for " + city);
-  // console.log(crimeUrl[city]);
   crimeData =  new Array();
   crimeLocations = new Array();
-  var locations = new Array();
   crimeType = {};
 
   //Fill crimeData with JSON blobs content
-  //Force synchromous calls
-
-  for (var blob of crimeUrl[city]) {
+  for (var idx in crimeUrl[city]) {
     $.ajax({
-    async: false,
-    url: blob,
+    async: true,
+    url: crimeUrl[city][idx],
     success: function(data) {
       //Get crime location
+      var locations = new Array();
       crimeData = crimeData.concat(data);
+      for (var i = 0; i < data.length; i++) {
+        locations[i] = [crimeData[i].lat, crimeData[i].lng];
+        //Determine crime types
+        if (!(crimeData[i].Category in crimeType)) {
+          crimeType[crimeData[i].Category] = 1;
+        }
+        else {
+          crimeType[crimeData[i].Category] += 1;
+        }
 
+      }
+      crimeLocations = crimeLocations.concat(locations)
+      if (idx == crimeUrl[city].length - 1)
+        visualizeCrime(null); //Display all crimes of the city
       }
     });
   }
-  for (var i = 0; i < crimeData.length; i++) {
-    crimeLocations[i] = [crimeData[i].lat, crimeData[i].lng];
-    //Determine crime types
-    if (!(crimeData[i].Category in crimeType)) {
-      crimeType[crimeData[i].Category] = 1;
-    }
-    else {
-      crimeType[crimeData[i].Category] += 1;
-  }
-
-  }
-    visualizeCrime(null); //Display all crimes of the city
 }
 
 function updateRadius(circle, radius){
