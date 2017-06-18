@@ -294,7 +294,7 @@ function fetchData(city) {
         }
 
       }
-      crimeLocations = crimeLocations.concat(locations)
+      crimeLocations = crimeLocations.concat(locations);
       if (idx == crimeUrl[city].length - 1)
         visualizeCrime(null); //Display all crimes of the city
       }
