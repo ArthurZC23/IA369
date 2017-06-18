@@ -91,7 +91,7 @@ function myMap() {
       fetchData(cities[place.place_id]);
     }
     else {
-      alert("There is no data available for this city")
+      alert("There is no data available for this city");
     }
 
   });
