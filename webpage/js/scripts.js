@@ -23,14 +23,16 @@ var crimeUrl = {
   "campinas": ["https://jsonblob.com/api/jsonBlob/1558b618-5394-11e7-ae4c-47c3fb90e2a1"]
 };
 var crimeClusters = {
-  "sanfrancisco": 'https://jsonblob.com/a9272b4a-5451-11e7-ae4c-d343c07eb64f',
-  "campinas": 'https://jsonblob.com/cdb16af6-5451-11e7-ae4c-c1ce04d62daf'
+  "sanfrancisco": 'https://jsonblob.com/api/jsonBlob/cdb16af6-5451-11e7-ae4c-c1ce04d62daf',
+  "campinas": 'https://jsonblob.com/api/jsonBlob/a9272b4a-5451-11e7-ae4c-d343c07eb64f'
 };
 var crimeData;
 var crimeLocations;
 var crimeType;
+var pinIcon;
 var relevantCrimesIdx;
 var relevantCrimes;
+
 
 function myMap() {
 
@@ -100,7 +102,35 @@ function myMap() {
 
   });
 
+  pinIcon = new google.maps.MarkerImage(
+      "https://www.cogenhr.com/development/wp-content/uploads/2015/03/Red-circle-transparent-1024x1006.png",
+      null, /* size is determined at runtime */
+      null, /* origin is 0,0 */
+      null, /* anchor is bottom center of the scaled image */
+      new google.maps.Size(15, 15)
+  );
+
+  displayClusters(city);
 }
+
+function displayClusters(city){
+
+  // //Get clusters centers
+  $.ajax({
+    async: true,
+    url: crimeClusters[city],
+    success: function(data) {
+      for (center of data){
+        var marker = new google.maps.Marker({
+          position: {lat: center.lat, lng: center.lng},
+          map: map
+      });
+        marker.setIcon(pinIcon);
+      }
+    }
+  });
+}
+
 
 function setDangerCircle(location, marker) {
   safetyCircle.set('center', location);
