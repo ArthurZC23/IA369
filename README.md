@@ -6,7 +6,7 @@ Walking safe is a interactive visualization tool to help tourist to navigate saf
 
 Do after finish the app
 
-## [Webapp: Change the URL](https://rpubs.com/alelopes/sf_crime_4tourists)
+## [Webapp]()
 
 ## Technologies used
 
@@ -29,11 +29,23 @@ The JSON files are stores as blobs at [JSON Blob](https://jsonblob.com/). In cas
 
 ## How to add new data
 
+In case you want to add new data to this project, the procedure is very simple:
 
+1. Get some crime data about a city. The data must have the following fields: type of crime, latitude and longitude.
+2. Pre-process the data to select only the types of crimes you think are relevant to tourists
+3. Add the severity of each type of crime
+4. Save the data as a JSON object
+5. Split the JSON into smaller blobs, case need it
+6. Upload the JSON blobs at [JSON Blob](https://jsonblob.com/)
+7. Update crimeUrl with the JSON blobs URLs
 
 ## Lessons learned
 
+
+
 ## Future improvements
+
+
 
 ## Inspiration
 
