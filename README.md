@@ -14,11 +14,11 @@ v1.0.0 is a client side webapp made with javascript. We used the following libra
 
 * Google maps API
 * D3
-* More
+* **More**
 
 ## Data
 
-Currently the app has crime data for three cities: [San Francisco]() (CA, US), [São Paulo]() (SP, BR) and [Campinas]() (SP, BR). The data was preprocessed to select only crimes relevants for tourists (e.g. assault is a crime relevant to tourists, while domestic violence is not). The final data is a list of JSON objects with the following fields:
+Currently the app has crime data for three cities: [San Francisco](https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki) (CA, US), [São Paulo](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR) and [Campinas](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR). The data was preprocessed to select only crimes relevants for tourists (e.g. assault is a crime relevant to tourists, while domestic violence is not). The final data is a list of JSON objects with the following fields:
 
 * Category: type of crime
 * lat: latitude of the crime occurrence
