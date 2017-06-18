@@ -21,8 +21,10 @@ def main():
     centers = kmeans.cluster_centers_
     columns = ['lat', 'lng']
     df_clusters = DataFrame(centers, columns=columns)
+    _, new_file = os.path.split(file)
+    new_file, _ = os.path.splittext(new_file)
     df_clusters.to_json(
-        path_or_buf=file+'Cluster.json',
+        path_or_buf=new_file+'Cluster.json',
         orient='records'
     )
 

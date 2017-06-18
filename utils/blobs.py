@@ -1,4 +1,5 @@
 import argparse
+import os
 
 import pandas as pd
 
@@ -14,10 +15,12 @@ def main():
 
     df = pd.read_json(file)
     rows = df.shape[0]
+    _, new_file = os.path.split(file)
+    new_file, _ = os.path.splittext(new_file)
     for i in range(chunks):
         blob = df.loc[i*rows/chunks:(i+1)*rows/chunks, :]
         blob.to_json(
-            path_or_buf=file+str(i)+'.json',
+            path_or_buf=new_file+str(i)+'.json',
             orient='records'
         )
 
