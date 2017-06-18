@@ -1,5 +1,5 @@
 import argparse
-
+import os
 
 import pandas as pd
 from pandas import DataFrame
@@ -22,7 +22,7 @@ def main():
     columns = ['lat', 'lng']
     df_clusters = DataFrame(centers, columns=columns)
     _, new_file = os.path.split(file)
-    new_file, _ = os.path.splittext(new_file)
+    new_file, _ = os.path.splitext(new_file)
     df_clusters.to_json(
         path_or_buf=new_file+'Cluster.json',
         orient='records'

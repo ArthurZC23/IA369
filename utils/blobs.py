@@ -16,7 +16,7 @@ def main():
     df = pd.read_json(file)
     rows = df.shape[0]
     _, new_file = os.path.split(file)
-    new_file, _ = os.path.splittext(new_file)
+    new_file, _ = os.path.splitext(new_file)
     for i in range(chunks):
         blob = df.loc[i*rows/chunks:(i+1)*rows/chunks, :]
         blob.to_json(
