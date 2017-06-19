@@ -1,5 +1,8 @@
 #map {
     height: 100%;
+    width: 50%;
+    display: inline-block;
+    float: left;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
@@ -12,6 +15,26 @@ html, body {
     top: 35%;
     left: 0%;
     z-index: 5;
+}
+
+#details{
+
+  height: 100%;
+  width: 50%;
+  display: inline-block;
+  float: left;
+
+}
+
+.buttonAbout{
+    position: absolute;
+    top: 200%;
+    left: 0%;
+    z-index: 5;
+}
+
+.buttonDisplay {
+    border-radius: 50%;
 }
 
 .popup {
@@ -76,20 +99,4 @@ html, body {
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
     width: 400px;
-}
-
-.low-btn {
-    opacity:0.4;
-}
-
-.high-btn {
-    opacity:0.4;
-}
-
-.about-btn{
-    opacity:0.4;
-    position: absolute;
-    top: 200%;
-    left: 0%;
-    z-index: 5;
 }

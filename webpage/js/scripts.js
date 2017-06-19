@@ -59,6 +59,12 @@ var crimeType;
 var relevantCrimesIdx;
 var relevantCrimes;
 
+function displayInfo(){
+  console.log("Here");
+  document.getElementById('map').setAttribute("width", "100%");
+
+}
+
 function myMap() {
 // Create a new StyledMapType object, passing it an array of styles,
 // and the name to be displayed on the map type control.

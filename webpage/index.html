@@ -16,26 +16,23 @@
   </head>
   <body>
     <div id="floating-panel">
-      <p><button onclick="lowSeverityOnClick()" title="Low Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link low-btn"><img src="https://s14.postimg.org/n8h47rqkt/low_Severity.png" width="50px" /></button></p>
+      <p>
+        <button onclick="lowSeverityOnClick()" title="Low Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link low-btn"><img src="https://s14.postimg.org/n8h47rqkt/low_Severity.png" width="50px" /></button></p>
       <p>
         <button onclick="highSeverityOnClick()" title="High Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link high-btn"><img src="https://s14.postimg.org/kpvf734ul/high_Severity.png" width="50px" /></button>
       </p>
-
       <p>
         <button onclick="aboutOnClick()" title="About" data-toggle="tooltip" data-placement="right" data-popup-open="popup-1" class="btn btn-md btn-link about-btn"><img src="https://s22.postimg.org/mkocupett/1494834244_19.png" width="50px" /></button>
       </p>
-
-
       <input id="pac-input" class="controls" type="text" placeholder="City">
     </div>
-
     <div id="map">
       <!--<script asyc defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6y7F-Nhsd9uzQs5v_B26ebqJ5xKbL2Sc&libraries=places&callback,visualization&callback=myMap"></script>-->
       <script async defer
               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2lbbygUBcGlfOpC8EC6S-rvNcMMXbWfQ&libraries=visualization,places&callback=myMap">
       </script>
     </div>
-
+    <div id="details"><svg class="chart"></svg></div>
     <div class="popup" data-popup="popup-1">
       <div class="popup-inner">
         <h2>T3 Project.</h2>
