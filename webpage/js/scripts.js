@@ -20,7 +20,8 @@ var gradient = [
 var city = "sanfrancisco";
 var cities = {
   "ChIJIQBpAG2ahYAR_6128GcTUEo": "sanfrancisco",
-  "ChIJJWNL5x3GyJQRKsJ4IWo65Rc": "campinas"}
+  "ChIJJWNL5x3GyJQRKsJ4IWo65Rc": "campinas",
+  "ChIJ0WGkg4FEzpQRrlsz_whLqZs": "saopaulo"}
 var citiesGeo = {
   "sanfrancisco": {
     "lat": 37.773972,
@@ -36,9 +37,21 @@ var citiesGeo = {
   }
 };
 var crimeUrl = {
-  "sanfrancisco": "https://raw.githubusercontent.com/ArthurZC23/IA369/filters/webpage/resources/data/sanfrancisco.json?token=AGHU9xGXQYzecMRFasd43o_s_UdzdE7fks5ZUCBdwA%3D%3D",
-  "campinas": "https://raw.githubusercontent.com/ArthurZC23/IA369/filters/webpage/resources/data/campinas.json?token=AGHU96Q3X-CiubFzF53S6p3KfZsP7JOHks5ZTzyjwA%3D%3D",
-  "saopaulo": "https://raw.githubusercontent.com/alelopes/TestEclipse/master/TestCommmitEclipse/src/main/java/com/bermuda/TestCommmitEclipse/saopaulo.json"
+  "sanfrancisco": [
+    "https://jsonblob.com/api/jsonBlob/66d8d627-550a-11e7-ae4c-e174547a89e4",
+    "https://jsonblob.com/api/jsonBlob/dea839ea-550a-11e7-ae4c-63f44d622f58",
+    "https://jsonblob.com/api/jsonBlob/47776e8e-550b-11e7-ae4c-13be840abada",
+    "https://jsonblob.com/api/jsonBlob/6a12fdb5-550b-11e7-ae4c-a5f33aecc534",
+    "https://jsonblob.com/api/jsonBlob/9153f8f8-550b-11e7-ae4c-af74e56a1d3b",
+    "https://jsonblob.com/api/jsonBlob/b38d90e8-550b-11e7-ae4c-7d5c835b9d56",
+    "https://jsonblob.com/api/jsonBlob/e05d46e1-550b-11e7-ae4c-ef7ea6b6fe4d",
+    "https://jsonblob.com/api/jsonBlob/00189953-550c-11e7-ae4c-0b90d5caeebc",
+    "https://jsonblob.com/api/jsonBlob/26d37497-550c-11e7-ae4c-870706833c4d",
+    "https://jsonblob.com/api/jsonBlob/fc244613-5511-11e7-ae4c-6737be268115"],
+  "campinas": ["https://jsonblob.com/api/jsonBlob/8a352e6b-5513-11e7-ae4c-17f6ef9604ff"],
+  "saopaulo": [
+    "https://jsonblob.com/api/jsonBlob/44743cbe-5512-11e7-ae4c-752b582c7720",
+    "https://jsonblob.com/api/jsonBlob/78c777ce-5512-11e7-ae4c-cd2ab1866695"]
 };
 var crimeData;
 var crimeLocations;
@@ -57,7 +70,7 @@ function myMap() {
   var nightStyledMapType = new google.maps.StyledMapType(
           nightMapStyle,
           {name: 'Night Map'});
-          
+
   //Default initialization with San Francisco
   var latLng = new google.maps.LatLng(citiesGeo[city]);
   var mapOptions = {
@@ -323,7 +336,7 @@ function computeDistanceBetween(myLocation, crimeLocation) {
 
 //Get SF crime data
 function fetchData(city) {
-  
+
   crimeData =  new Array();
   crimeLocations = new Array();
   crimeType = {};
