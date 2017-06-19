@@ -130,11 +130,11 @@ function displayClusters(city){
         for (center of data){
           var marker = new google.maps.Marker({
             position: {lat: center.lat, lng: center.lng},
-
+            animation: google.maps.Animation.DROP,
             map: map
         });
-          clusters.push(marker)
-          clusters.slice(-1)[0].setIcon(pinIcon);
+          marker.setIcon(pinIcon);
+          clusters.push(marker);
         }
         for (idx in clusters){
           clusters[idx].addListener('click', function(innerIdx) {
@@ -142,8 +142,14 @@ function displayClusters(city){
               infowindow.open(map, clusters[innerIdx]);
             }
           }(idx));
-        }
+          clusters[idx].addListener('click', function(innerIdx) {
+            return function(){
+              toggleBounce(innerIdx);
+            }
+          }(idx));
 
+
+        }
         clusterDisplay = true;
       }
     });
@@ -153,9 +159,19 @@ function displayClusters(city){
     for (idx in clusters)
       clusters[idx].setMap(null);
     clusterDisplay = false;
-
   }
+}
 
+function toggleBounce(idx) {
+  if (clusters[idx].getAnimation() !== null) {
+    clusters[idx].setAnimation(null);
+  } else {
+    clusters[idx].setAnimation(google.maps.Animation.BOUNCE);
+    for (otherIdx in clusters){
+      if (otherIdx == idx) continue;
+      clusters[otherIdx].setAnimation(null);
+    }
+  }
 }
 
 
