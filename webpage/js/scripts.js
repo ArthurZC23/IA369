@@ -1,6 +1,5 @@
 var map, heatmap, marker;
 var safetyCircle;
-var city = "campinas";
 var gradient = [
   'rgba(216, 229, 0, 0)',
   'rgba(246, 255, 92, 1)',
@@ -18,7 +17,10 @@ var gradient = [
   'rgba(192, 17, 33, 1)',
   'rgba(191, 0, 36, 1)'
 ];
-
+var city = "sanfrancisco";
+var cities = {
+  "ChIJIQBpAG2ahYAR_6128GcTUEo": "sanfrancisco",
+  "ChIJJWNL5x3GyJQRKsJ4IWo65Rc": "campinas"}
 var citiesGeo = {
   "sanfrancisco": {
     "lat": 37.773972,
@@ -38,9 +40,9 @@ var crimeUrl = {
   "campinas": "https://raw.githubusercontent.com/ArthurZC23/IA369/filters/webpage/resources/data/campinas.json?token=AGHU96Q3X-CiubFzF53S6p3KfZsP7JOHks5ZTzyjwA%3D%3D",
   "saopaulo": "https://raw.githubusercontent.com/alelopes/TestEclipse/master/TestCommmitEclipse/src/main/java/com/bermuda/TestCommmitEclipse/saopaulo.json"
 };
-var crimeData = new Array();
-var crimeLocations = new Array();
-var crimeType = {};
+var crimeData;
+var crimeLocations;
+var crimeType;
 var relevantCrimesIdx;
 var relevantCrimes;
 
@@ -120,12 +122,21 @@ function myMap() {
     }
 
     var place = places[0];
+
     if (!place.geometry) {
       console.log("Returned place contains no geometry");
       return;
     }
     map.setCenter(place.geometry.location);
-    setDangerCircle(place.geometry.location, marker);
+
+    if (place.place_id in cities){
+      setDangerCircle(place.geometry.location, marker);
+      fetchData(cities[place.place_id]);
+    }
+    else {
+      alert("There is no data available for this city");
+    }
+
   });
 
 }
@@ -312,27 +323,36 @@ function computeDistanceBetween(myLocation, crimeLocation) {
 
 //Get SF crime data
 function fetchData(city) {
+  
+  crimeData =  new Array();
+  crimeLocations = new Array();
+  crimeType = {};
 
-  $.getJSON(crimeUrl[city], function (data) {
-
-    crimeData = data;
-    var loc;
-    for (var i = 0; i < crimeData.length; i++) {
-
+  //Fill crimeData with JSON blobs content
+  for (var idx in crimeUrl[city]) {
+    $.ajax({
+    async: true,
+    url: crimeUrl[city][idx],
+    success: function(data) {
       //Get crime location
-      lat = crimeData[i].lat;
-      lng = crimeData[i].lng;
-      crimeLocations[i] = [lat, lng];
-
-      //Count crime types
-      if (!(crimeData[i].Category in crimeType)) {
-        crimeType[crimeData[i].Category] = 1;
-      } else {
-        crimeType[data[i].Category] += 1;
+      var locations = new Array();
+      crimeData = crimeData.concat(data);
+      for (var i = 0; i < data.length; i++) {
+        locations[i] = [crimeData[i].lat, crimeData[i].lng];
+        //Determine crime types
+        if (!(crimeData[i].Category in crimeType)) {
+          crimeType[crimeData[i].Category] = 1;
+        }
+        else {
+          crimeType[crimeData[i].Category] += 1;
+        }
       }
-    }
-    visualizeCrime(null); //Display all crimes of the city
-  });
+      crimeLocations = crimeLocations.concat(locations);
+      if (idx == crimeUrl[city].length - 1)
+        visualizeCrime(null); //Display all crimes of the city
+      }
+    });
+  }
 }
 
 function updateRadius(circle, radius) {
