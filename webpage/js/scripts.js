@@ -115,6 +115,11 @@ function myMap() {
 
 function displayClusters(city){
 
+  var contentString =
+            '<p>Put some text here</p>';
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
   // //Get clusters centers
   if (!clusterDisplay){
     $.ajax({
@@ -125,11 +130,20 @@ function displayClusters(city){
         for (center of data){
           var marker = new google.maps.Marker({
             position: {lat: center.lat, lng: center.lng},
+
             map: map
         });
-          marker.setIcon(pinIcon);
           clusters.push(marker)
+          clusters.slice(-1)[0].setIcon(pinIcon);
         }
+        for (idx in clusters){
+          clusters[idx].addListener('click', function(innerIdx) {
+            return function(){
+              infowindow.open(map, clusters[innerIdx]);
+            }
+          }(idx));
+        }
+
         clusterDisplay = true;
       }
     });
