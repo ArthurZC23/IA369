@@ -234,50 +234,80 @@ function visualizeCrime(relevantCrimesIdx) {
 }
 
 function barChart(relevantCrimes) {
-  drawMaterial();
 
+  //Remove previous plot and add new one
+  d3.select("svg > *")
+          .remove();
+  // set the dimensions of the canvas
+  var margin = {top: 20, right: 20, bottom: 200, left: 40},
+          width = 600 - margin.left - margin.right,
+          height = 450 - margin.top - margin.bottom;
+
+  // set the ranges
+  var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
+  var y = d3.scale.linear().range([height, 0]);
+
+  // define the axis
+  var xAxis = d3.svg.axis()
+          .scale(x)
+          .orient("bottom")
+  var yAxis = d3.svg.axis()
+          .scale(y)
+          .orient("left")
+          .ticks(10);
+
+  // add the SVG element
+  var svg = d3.select("svg")
+          .attr("width", width + margin.left + margin.right)
+          .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+          .attr("transform",
+                  "translate(" + margin.left + "," + margin.top + ")");
+
+  relevantCrimes.forEach(function (d) {
+    d.CrimeType = d.CrimeType;
+    d.Number = +d.Number;
+  });
+
+  // scale the range of the data
+  x.domain(relevantCrimes.map(function (d) {
+    return d.CrimeType;
+  }));
+  y.domain([0, d3.max(relevantCrimes, function (d) {
+      return d.Number;
+    })]);
+
+  // add axis
+  svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis)
+          .selectAll("text")
+          .style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", "-.55em")
+          .attr("transform", "rotate(-90)");
+
+  svg.append("g")
+          .attr("class", "y axis")
+          .call(yAxis);
+
+  // Add bar chart
+  svg.selectAll("bar")
+          .data(relevantCrimes)
+          .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", function (d) {
+            return x(d.CrimeType);
+          })
+          .attr("width", x.rangeBand())
+          .attr("y", function (d) {
+            return y(d.Number);
+          })
+          .attr("height", function (d) {
+            return height - y(d.Number);
+          });
 }
-
-function drawMaterial() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('timeofday', 'Time of Day');
-      data.addColumn('number', 'Motivation Level');
-      data.addColumn('number', 'Energy Level');
-
-      data.addRows([
-        [{v: [8, 0, 0], f: '8 am'}, 1, .25],
-        [{v: [9, 0, 0], f: '9 am'}, 2, .5],
-        [{v: [10, 0, 0], f:'10 am'}, 3, 1],
-        [{v: [11, 0, 0], f: '11 am'}, 4, 2.25],
-        [{v: [12, 0, 0], f: '12 pm'}, 5, 2.25],
-        [{v: [13, 0, 0], f: '1 pm'}, 6, 3],
-        [{v: [14, 0, 0], f: '2 pm'}, 7, 4],
-        [{v: [15, 0, 0], f: '3 pm'}, 8, 5.25],
-        [{v: [16, 0, 0], f: '4 pm'}, 9, 7.5],
-        [{v: [17, 0, 0], f: '5 pm'}, 10, 10],
-      ]);
-
-      var options = {
-        title: 'Motivation and Energy Level Throughout the Day',
-        hAxis: {
-          title: 'Time of Day',
-          format: 'h:mm a',
-          viewWindow: {
-            min: [7, 30, 0],
-            max: [17, 30, 0]
-          }
-        },
-        vAxis: {
-          title: 'Rating (scale of 1-10)'
-        }
-      };
-
-      var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
-      materialChart.draw(data, options);
-    }
-
-google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawMaterial);
 
 function style_circle(dangerLevel) {
   lowDanger = 0.01 * crimeData.length;
