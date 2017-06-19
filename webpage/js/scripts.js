@@ -60,9 +60,16 @@ var relevantCrimesIdx;
 var relevantCrimes;
 
 function displayInfo(){
-  console.log("Here");
-  document.getElementById('map').setAttribute("width", "100%");
-
+  var details = document.getElementById('details');
+  if(details.style.width != "0px"){
+    document.getElementById('map').style.width = "100%";
+    document.getElementById('details').style.width = "0px";
+  }
+  else{
+    document.getElementById('map').style.width = "50%";
+    document.getElementById('details').style.width = "50%"
+  }
+    google.maps.event.trigger(map, "resize");
 }
 
 function myMap() {

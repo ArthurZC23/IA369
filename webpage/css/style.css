@@ -4,6 +4,15 @@
     display: inline-block;
     float: left;
 }
+
+#details{
+
+  height: 100%;
+  width: 50%;
+  display: inline-block;
+  float: left;
+}
+
 /* Optional: Makes the sample page fill the window. */
 html, body {
     height: 100%;
@@ -17,14 +26,7 @@ html, body {
     z-index: 5;
 }
 
-#details{
 
-  height: 100%;
-  width: 50%;
-  display: inline-block;
-  float: left;
-
-}
 
 .buttonAbout{
     position: absolute;
