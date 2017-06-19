@@ -66,8 +66,8 @@ function displayInfo(){
     document.getElementById('details').style.width = "0px";
   }
   else{
-    document.getElementById('map').style.width = "60%";
-    document.getElementById('details').style.width = "40%"
+    document.getElementById('map').style.width = "55%";
+    document.getElementById('details').style.width = "45%"
   }
     google.maps.event.trigger(map, "resize");
 }
@@ -133,7 +133,7 @@ function myMap() {
   // Create the search box
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function () {

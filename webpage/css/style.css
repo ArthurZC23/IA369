@@ -1,6 +1,6 @@
 #map {
     height: 100%;
-    width: 60%;
+    width: 55%;
     display: inline-block;
     float: left;
 }
@@ -8,7 +8,7 @@
 #details{
 
   height: 100%;
-  width: 40%;
+  width: 45%;
   display: inline-block;
   float: left;
   background-color: #CCCCCC;
