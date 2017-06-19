@@ -13,6 +13,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+      h1 {
+        font-size: 60px;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
     <div id="floating-panel">
@@ -35,7 +41,9 @@
               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2lbbygUBcGlfOpC8EC6S-rvNcMMXbWfQ&libraries=visualization,places&callback=myMap">
       </script>
     </div>
-    <div id="details"><svg class="chart"></svg></div>
+    <div id="details">
+      <h1>Crimes' details</h1>
+      <svg class="chart"></svg></div>
     <div class="popup" data-popup="popup-1">
       <div class="popup-inner">
         <h2>T3 Project.</h2>

@@ -66,8 +66,8 @@ function displayInfo(){
     document.getElementById('details').style.width = "0px";
   }
   else{
-    document.getElementById('map').style.width = "50%";
-    document.getElementById('details').style.width = "50%"
+    document.getElementById('map').style.width = "60%";
+    document.getElementById('details').style.width = "40%"
   }
     google.maps.event.trigger(map, "resize");
 }
