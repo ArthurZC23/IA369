@@ -13,12 +13,6 @@ html, body {
     left: 0%;
     z-index: 5;
 }
-.buttonAbout{
-    position: absolute;
-    top: 200%;
-    left: 0%;
-    z-index: 5;
-}
 
 .popup {
     width:100%;
@@ -82,4 +76,20 @@ html, body {
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
     width: 400px;
+}
+
+.low-btn {
+    opacity:0.4;
+}
+
+.high-btn {
+    opacity:0.4;
+}
+
+.about-btn{
+    opacity:0.4;
+    position: absolute;
+    top: 200%;
+    left: 0%;
+    z-index: 5;
 }

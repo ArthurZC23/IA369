@@ -383,8 +383,8 @@ function toggleHeatmap() {
 function aboutOnClick() {
 
 
-  $('.buttonAbout').css({
-    'opacity': 0.4
+  $('.about-btn').css({
+    'opacity': 1
   });
 
   plotData();
@@ -393,10 +393,10 @@ function aboutOnClick() {
 
 function deactivateHeatmap() {
   $('.high-btn').css({
-    'opacity': 1
+    'opacity': 0.4
   });
   $('.low-btn').css({
-    'opacity': 1
+    'opacity': 0.4
   });
   if (lowSeverityActive || highSeverityActive) {
     console.log(lowSeverityActive + ' ' + highSeverityActive)
@@ -415,11 +415,11 @@ function lowSeverityOnClick() {
   lowSeverityActive = !lowSeverityActive;
   if (lowSeverityActive) {
     $('.low-btn').css({
-      'opacity': 0.4
+      'opacity': 1
     });
   } else {
     $('.low-btn').css({
-      'opacity': 1
+      'opacity': 0.4
     });
   }
   plotData();
@@ -434,11 +434,11 @@ function highSeverityOnClick() {
   highSeverityActive = !highSeverityActive;
   if (highSeverityActive) {
     $('.high-btn').css({
-      'opacity': 0.4
+      'opacity': 1
     });
   } else {
     $('.high-btn').css({
-      'opacity': 1
+      'opacity': 0.4
     });
   }
   plotData();
@@ -449,12 +449,10 @@ function plotData() {
   heatmap.set("data", null);
   var finalPoints = [];
   if (lowSeverityActive) {
-    console.log("MULHER")
     finalPoints = finalPoints.concat(getLowSeverityData());
 
   }
   if (highSeverityActive) {
-    console.log("HOUSE ACTIVE");
     finalPoints = finalPoints.concat(getHighSeverityData());
   }
 
@@ -527,8 +525,8 @@ $(function () {
 
     e.preventDefault();
 
-    $('.buttonAbout').css({
-      'opacity': 1
+    $('.about-btn').css({
+      'opacity': 0.4
     });
 
   });
