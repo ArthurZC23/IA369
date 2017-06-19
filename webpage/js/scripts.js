@@ -32,7 +32,8 @@ var crimeType;
 var pinIcon;
 var relevantCrimesIdx;
 var relevantCrimes;
-
+var clusterDisplay;
+var clusters;
 
 function myMap() {
 
@@ -110,25 +111,37 @@ function myMap() {
       new google.maps.Size(15, 15)
   );
 
-  displayClusters(city);
 }
 
 function displayClusters(city){
 
   // //Get clusters centers
-  $.ajax({
-    async: true,
-    url: crimeClusters[city],
-    success: function(data) {
-      for (center of data){
-        var marker = new google.maps.Marker({
-          position: {lat: center.lat, lng: center.lng},
-          map: map
-      });
-        marker.setIcon(pinIcon);
+  if (!clusterDisplay){
+    $.ajax({
+      async: true,
+      url: crimeClusters[city],
+      success: function(data) {
+        clusters = new Array();
+        for (center of data){
+          var marker = new google.maps.Marker({
+            position: {lat: center.lat, lng: center.lng},
+            map: map
+        });
+          marker.setIcon(pinIcon);
+          clusters.push(marker)
+        }
+        clusterDisplay = true;
       }
-    }
-  });
+    });
+  }
+  else{
+    //Remove markers
+    for (idx in clusters)
+      clusters[idx].setMap(null);
+    clusterDisplay = false;
+
+  }
+
 }
 
 
