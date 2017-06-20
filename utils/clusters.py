@@ -23,6 +23,7 @@ def set_logger():
 
 def new_assignement(lost_points):
     """Assign new cluster to lost data points"""
+
     new_labels = np.apply_along_axis(
         lambda x: assign_label(x, centers),
         axis=1,
@@ -69,14 +70,17 @@ def main():
 
     set_logger()
     logger = logging.getLogger('clusters.main')
+
     logger.info("Parsing arguments")
     file, clusters = get_args()
+
     logger.info("Performing KMeans clustering")
     df = pd.read_json(file)
     X = df.loc[:, ['lat', 'lng']].values
     kmeans = KMeans(n_clusters=clusters, max_iter=1000).fit(X)
 
     #Cluster metadata
+    logger.info("Calculating cluster metadata")
     centers = {k: v for k, v in enumerate(kmeans.cluster_centers_)}
     logger.info("Counting number of crimes of each cluster")
     labels = Series(kmeans.labels_)
@@ -84,17 +88,15 @@ def main():
     for l in labels.unique():
         num = labels[labels == l].count()
         num_labels[l] = num
-    logger.debug("number of occurrences of each label: {}".format(num_labels))
+    logger.debug("Number of occurrences of each label: {}".format(num_labels))
 
-    logger.info("Transofrming counting into percentage")
+    logger.info("Transforming counting into percentage")
     total = labels.count()
     percentage = {k: v/total for k, v in num_labels.items()}
-    logger.debug("percentage of each label: {}".format(percentage))
+    logger.debug("Percentage of each label: {}".format(percentage))
 
     logger.info("Removing clusters with few points")
     labels_remove, lost_points = filter_clusters(percentage, X, labels)
-
-    #Remove labels from other data structures
     for l in labels_remove:
         percentage.pop(l, 'None')
         num_labels.pop(l, 'None')
@@ -106,13 +108,12 @@ def main():
 
     logger.info("Assign lost points to new clusters")
     new_labels = new_assignement(lost_points)
-    #Update data structures
     for l in new_labels:
         num_labels[l] += 1
     percentage = {k: v/total for k, v in num_labels.items()}
 
     logger.info("Save results in JSON")
-    #Clusters
+    logger.info("Saving clusters centers")
     columns = ['lat', 'lng']
     df_clusters = DataFrame(centers, columns=columns)
     _, new_file = os.path.split(file)
@@ -122,6 +123,7 @@ def main():
         orient='records'
     )
     #Metadata
+    logger.info("Saving clusters metadata")
     columns = [
         'Number of crimes',
         'Percentage of total crimes',
