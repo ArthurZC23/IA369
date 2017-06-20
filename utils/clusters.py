@@ -74,9 +74,11 @@ def main():
     logger.info("Parsing arguments")
     file, clusters = get_args()
 
-    logger.info("Performing KMeans clustering")
+    logger.info("Load data and check for data consistency")
     df = pd.read_json(file)
+    df = df.dropna(axis = 0, how='any')
     X = df.loc[:, ['lat', 'lng']].values
+    logger.info("Performing KMeans clustering")
     kmeans = KMeans(n_clusters=clusters, max_iter=1000).fit(X)
 
     #Cluster metadata
