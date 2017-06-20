@@ -56,7 +56,7 @@ def filter_clusters(percentage, X, labels):
     """Filter out clusters with less than 0.1 of the tada"""
     labels_remove = []
     for l, v in percentage.items():
-        if v < 0.1:
+        if v < 0.05:
             idx = (labels == l)
             lost_p = X[idx]
             try:
