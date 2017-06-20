@@ -43,6 +43,20 @@ def get_args():
     clusters = args.clusters
     return file, clusters
 
+def filter_clusters(percentage, X, labels):
+    """Filter out clusters with less than 0.1 of the tada"""
+    labels_remove = []
+    for l, v in percentage.items():
+        if v < 0.1:
+            idx = (labels == l)
+            lost_p = X[idx]
+            try:
+                lost_points = np.concatenate((lost_points, lost_p), axis=0)
+            except NameError:
+                lost_points = lost_p
+            labels_remove.append(l)
+    return labels_remove, lost_points
+
 def main():
 
     set_logger()
@@ -70,24 +84,16 @@ def main():
     logger.debug("percentage of each label: {}".format(percentage))
 
     logger.info("Removing clusters with few points")
-    labels_remove = []
-    for l, v in percentage.items():
-        if v < 0.1:
-            idx = (labels == l)
-            lost_p = X[idx]
-            try:
-                lost_points = np.concatenate((lost_points, lost_p), axis=0)
-            except NameError:
-                lost_points = lost_p
-            labels_remove.append(l)
+    labels_remove, lost_points = filter_clusters(percentage, X, labels)
+
     #Remove labels from other data structures
     for l in labels_remove:
         percentage.pop(l, 'None')
         num_labels.pop(l, 'None')
         centers.pop(l, 'None')
 
-    logger.debug("number of occurrences of each label after filtering: {}".format(num_labels))
-    logger.debug("percentage of each label after filtering: {}".format(percentage))
+    logger.debug("Number of occurrences of each label after filtering: {}".format(num_labels))
+    logger.debug("Percentage of each label after filtering: {}".format(percentage))
     logger.debug("Number of filtered points: {}".format(lost_points.shape[0]))
 
     logger.info("Assign lost points to new clusters")
