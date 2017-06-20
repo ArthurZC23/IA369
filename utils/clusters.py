@@ -14,9 +14,9 @@ def set_logger():
     """Setup of stream log for quick debug"""
 
     logger = logging.getLogger('clusters')
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
     sh = logging.StreamHandler()
-    sh.setLevel(logging.DEBUG)
+    sh.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     sh.setFormatter(formatter)
     logger.addHandler(sh)
@@ -115,7 +115,6 @@ def main():
     logger.info("Save results in JSON")
     #Separate center into lat and lng
     centers_lat,  centers_lng= {}, {}
-    print(centers)
     for k, v in centers.items():
         centers_lat[k], centers_lng[k] = v[0], v[1]
     columns = [
