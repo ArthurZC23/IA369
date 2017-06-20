@@ -53,11 +53,18 @@ var crimeUrl = {
     "https://jsonblob.com/api/jsonBlob/44743cbe-5512-11e7-ae4c-752b582c7720",
     "https://jsonblob.com/api/jsonBlob/78c777ce-5512-11e7-ae4c-cd2ab1866695"]
 };
+var crimeClusters = {
+  "sanfrancisco": 'https://jsonblob.com/api/jsonBlob/cdb16af6-5451-11e7-ae4c-c1ce04d62daf',
+  "campinas": 'https://jsonblob.com/api/jsonBlob/a9272b4a-5451-11e7-ae4c-d343c07eb64f'
+};
 var crimeData;
 var crimeLocations;
 var crimeType;
+var pinIcon;
 var relevantCrimesIdx;
 var relevantCrimes;
+var clusterDisplay;
+var clusters;
 
 function myMap() {
 // Create a new StyledMapType object, passing it an array of styles,
@@ -152,7 +159,77 @@ function myMap() {
 
   });
 
+  pinIcon = new google.maps.MarkerImage(
+      "https://www.cogenhr.com/development/wp-content/uploads/2015/03/Red-circle-transparent-1024x1006.png",
+      null, /* size is determined at runtime */
+      null, /* origin is 0,0 */
+      null, /* anchor is bottom center of the scaled image */
+      new google.maps.Size(15, 15)
+  );
+
 }
+
+function displayClusters(city){
+
+  var contentString =
+            '<p>Put some text here</p>';
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  // //Get clusters centers
+  if (!clusterDisplay){
+    $.ajax({
+      async: true,
+      url: crimeClusters[city],
+      success: function(data) {
+        clusters = new Array();
+        for (center of data){
+          var marker = new google.maps.Marker({
+            position: {lat: center.lat, lng: center.lng},
+            animation: google.maps.Animation.DROP,
+            map: map
+        });
+          marker.setIcon(pinIcon);
+          clusters.push(marker);
+        }
+        for (idx in clusters){
+          clusters[idx].addListener('click', function(innerIdx) {
+            return function(){
+              infowindow.open(map, clusters[innerIdx]);
+            }
+          }(idx));
+          clusters[idx].addListener('click', function(innerIdx) {
+            return function(){
+              toggleBounce(innerIdx);
+            }
+          }(idx));
+
+
+        }
+        clusterDisplay = true;
+      }
+    });
+  }
+  else{
+    //Remove markers
+    for (idx in clusters)
+      clusters[idx].setMap(null);
+    clusterDisplay = false;
+  }
+}
+
+function toggleBounce(idx) {
+  if (clusters[idx].getAnimation() !== null) {
+    clusters[idx].setAnimation(null);
+  } else {
+    clusters[idx].setAnimation(google.maps.Animation.BOUNCE);
+    for (otherIdx in clusters){
+      if (otherIdx == idx) continue;
+      clusters[otherIdx].setAnimation(null);
+    }
+  }
+}
+
 
 function setDangerCircle(location, marker) {
   safetyCircle.set('center', location);
