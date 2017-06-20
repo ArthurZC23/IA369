@@ -21,6 +21,14 @@ def set_logger():
     sh.setFormatter(formatter)
     logger.addHandler(sh)
 
+def new_assignement(lost_points):
+    """Assign new cluster to lost data points"""
+    new_labels = np.apply_along_axis(
+        lambda x: assign_label(x, centers),
+        axis=1,
+        arr=lost_points)
+    return new_labels
+
 def assign_label(x, centers):
     """Assign lable to X, based on cluster centers"""
 
@@ -97,10 +105,7 @@ def main():
     logger.debug("Number of filtered points: {}".format(lost_points.shape[0]))
 
     logger.info("Assign lost points to new clusters")
-    new_labels = np.apply_along_axis(
-        lambda x: assign_label(x, centers),
-        axis=1,
-        arr=lost_points)
+    new_labels = new_assignement(lost_points)
     #Update data structures
     for l in new_labels:
         num_labels[l] += 1
