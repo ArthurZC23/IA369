@@ -1,69 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Walking Safe</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
-  <link rel="stylesheet" href="css/style.css" />
-  <script src="https://d3js.org/d3.v3.min.js"></script>
- <script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
- </script>
- <script type=text/javascript src="js/scripts.js"></script>
-</head>
-<body>
-  <h1>Walking Safe</h1>
-  <div>
-    <h2>Description</h2>
-  </div>
-  <div>
-    <h2>How to use it</h2>
-  </div>
-  <div>
-    <h2>Map</h2>
-    <input id="pac-input" class="controls" type="text" placeholder="Type city name">
+  <head>
+    <title>Walking Safe</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    <script type=text/javascript src="js/scripts.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <p><button onclick="lowSeverityOnClick()" title="Low Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link low-btn"><img src="https://s14.postimg.org/n8h47rqkt/low_Severity.png" width="50px" /></button></p>
+      <p>
+        <button onclick="highSeverityOnClick()" title="High Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link high-btn"><img src="https://s14.postimg.org/kpvf734ul/high_Severity.png" width="50px" /></button>
+      </p>
+    <p>
+      <input type="button" name="Clusters" value="Clusters" onclick=displayClusters(city)>
+    </p>
+      <p>
+        <button onclick="aboutOnClick()" title="About" data-toggle="tooltip" data-placement="right" data-popup-open="popup-1" class="btn btn-md btn-link about-btn"><img src="https://s22.postimg.org/mkocupett/1494834244_19.png" width="50px" /></button>
+      </p>
+
+
+      <input id="pac-input" class="controls" type="text" placeholder="City">
+    </div>
+
     <div id="map">
-      <script asyc defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6y7F-Nhsd9uzQs5v_B26ebqJ5xKbL2Sc&libraries=places&callback=myMap"></script>
+      <!--<script asyc defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6y7F-Nhsd9uzQs5v_B26ebqJ5xKbL2Sc&libraries=places&callback,visualization&callback=myMap"></script>-->
+      <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2lbbygUBcGlfOpC8EC6S-rvNcMMXbWfQ&libraries=visualization,places&callback=myMap">
+      </script>
     </div>
-    <input type="button" name="Clusters" value="Clusters" onclick=displayClusters(city)>
-    <svg class="chart"></svg>
-  </div>
-  <div>
-    <h2>Data</h2>
-  </div>
-  <div>
-    <h2>Authors</h2>
 
-    <div class="author">
-      <div>
-        <!-- <img src="https://raw.githubusercontent.com/ArthurZC23/IA369/master/webpage/resources/images/arthur.JPG?token=ATPc0xR29anDLH533arwx1V-LEJEH6ETks5ZNbYEwA%3D%3D" alt="Author image" width = "auto"; height = 100px class='authorImage'> -->
-      </div>
-      <div class="authorDescription">
-        <p>Alexandre Lopes</p>
-        <p>Bla bla</p>
+    <div class="popup" data-popup="popup-1">
+      <div class="popup-inner">
+        <h2>T3 Project.</h2>
+        <p>This project is part of the discipline IA369 and is suppose to show the dangerous regions filtered by group of San Francisco Crime Data available in <a href='https://www.kaggle.com/c/sf-crime'>Kaggle website</a>.</p>
+        <p>The filtering part follows the methodology proposed in the T2 project, that is available <a href='https://rpubs.com/alelopes/sf_crime_4tourists'>here</a>.</p>
+        <p>Author: Alexandre Lopes</p>
+        <p><a data-popup-close="popup-1" href="#">Close</a></p>
+        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
       </div>
     </div>
-
-  <div class="author">
-    <div>
-      <!-- <img src="https://raw.githubusercontent.com/ArthurZC23/IA369/master/webpage/resources/images/arthur.JPG?token=ATPc0xR29anDLH533arwx1V-LEJEH6ETks5ZNbYEwA%3D%3D" alt="Author image" width = "auto"; height = 100px class='authorImage'> -->
-    </div>
-    <div class="authorDescription">
-      <p>Arthur Zanatta da Costa</p>
-      <p>Bla bla</p>
-      </div>
-</div>
-
-<div class="author">
-  <div>
-    <!-- <img src="https://raw.githubusercontent.com/ArthurZC23/IA369/master/webpage/resources/images/arthur.JPG?token=ATPc0xR29anDLH533arwx1V-LEJEH6ETks5ZNbYEwA%3D%3D" alt="Author image" width = "auto"; height = 100px class='authorImage'> -->
-  </div>
-  <div class="authorDescription">
-    <p>Fabio Perez</p>
-    <p>Bla bla</p>
-    </div>
-
-</div>
-</div>
-</body>
+  </body>
 </html>
