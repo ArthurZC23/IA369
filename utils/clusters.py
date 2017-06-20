@@ -21,7 +21,7 @@ def set_logger():
     sh.setFormatter(formatter)
     logger.addHandler(sh)
 
-def new_assignement(lost_points):
+def new_assignement(lost_points, centers):
     """Assign new cluster to lost data points"""
 
     new_labels = np.apply_along_axis(
@@ -107,35 +107,33 @@ def main():
     logger.debug("Number of filtered points: {}".format(lost_points.shape[0]))
 
     logger.info("Assign lost points to new clusters")
-    new_labels = new_assignement(lost_points)
+    new_labels = new_assignement(lost_points, centers)
     for l in new_labels:
         num_labels[l] += 1
     percentage = {k: v/total for k, v in num_labels.items()}
 
     logger.info("Save results in JSON")
-    logger.info("Saving clusters centers")
-    columns = ['lat', 'lng']
-    df_clusters = DataFrame(centers, columns=columns)
-    _, new_file = os.path.split(file)
-    new_file, _ = os.path.splitext(new_file)
-    df_clusters.to_json(
-        path_or_buf=new_file+'Cluster.json',
-        orient='records'
-    )
-    #Metadata
-    logger.info("Saving clusters metadata")
+    #Separate center into lat and lng
+    centers_lat,  centers_lng= {}, {}
+    print(centers)
+    for k, v in centers.items():
+        centers_lat[k], centers_lng[k] = v[0], v[1]
     columns = [
         'Number of crimes',
         'Percentage of total crimes',
-        'Coordinates'
+        'lat',
+        'lng'
         ]
     df_meta = DataFrame({
         columns[0]: num_labels,
         columns[1]: percentage,
-        columns[2]: centers
+        columns[2]: centers_lat,
+        columns[3]: centers_lng
     })
+    _, basename = os.path.split(file)
+    basename, _ = os.path.splitext(basename)
     df_meta.to_json(
-        path_or_buf=new_file+'ClusterMeta.json',
+        path_or_buf=basename+'Cluster.json',
         orient='records'
     )
 
