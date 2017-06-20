@@ -112,14 +112,18 @@ def main():
     )
     #Metadata
     columns = [
-        'Coordinates',
         'Number of crimes',
-        'Percentage of total crimes'
+        'Percentage of total crimes',
+        'Coordinates'
         ]
     df_meta = DataFrame({
         columns[0]: num_labels,
-        columns[1]: percentage
+        columns[1]: percentage,
+        columns[2]: centers
     })
-    print(df_meta.head())
+    df_meta.to_json(
+        path_or_buf=new_file+'ClusterMeta.json',
+        orient='records'
+    )
 
 main()
