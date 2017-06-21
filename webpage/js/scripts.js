@@ -164,11 +164,11 @@ function myMap() {
       return;
     }
 
-    if (place.place_id in cities){
-      fetchData(cities[place.place_id]);
-    }
     map.setCenter(place.geometry.location);
-    setDangerCircle(place.geometry.location, marker);
+    if (place.place_id in cities)
+      fetchData(cities[place.place_id]);
+    else
+      setDangerCircle(place.geometry.location, marker);
   });
 
 }
@@ -184,6 +184,7 @@ function setDangerCircle(location, marker) {
 
   safetyCircle.set('center', location);
   marker.set('position', location);
+  console.log(location);
   dangerLevel = dangerEstimation(location);
   style_circle(dangerLevel);
 }
