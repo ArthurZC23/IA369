@@ -121,3 +121,31 @@ html, body {
   stroke: #000;
   shape-rendering: crispEdges;
 }
+
+h1 {
+  font-size: 60px;
+  text-align: center;
+  text-shadow: 2px 3px 5px white;
+}
+
+.slick-list {
+  height: 150px;
+  margin-top: 40px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.slick-track {
+  width: auto;
+  height: 150px;
+}
+svg {
+  height: 40%;
+  display: block;
+  margin: auto;
+}
+img {
+  display: block;
+  margin: auto;
+}
