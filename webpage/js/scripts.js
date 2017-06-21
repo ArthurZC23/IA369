@@ -185,9 +185,7 @@ function showSVPhoto(divSelector) {
       var childDiv = document.createElement("div");
       var elemImg = document.createElement("img");
       elemImg.setAttribute("src", photoUrl);
-      // elemImg.setAttribute("max-height", "100%");
-      // elemImg.setAttribute("max-width", "100%");
-      elemImg.setAttribute("width", "200px");
+      elemImg.setAttribute("height", "200px");
       childDiv.appendChild(elemImg);
       $(divSelector).slick('slickAdd', childDiv);
     }
