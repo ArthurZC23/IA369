@@ -163,19 +163,31 @@ function myMap() {
       console.log("Returned place contains no geometry");
       return;
     }
-    map.setCenter(place.geometry.location);
 
     if (place.place_id in cities){
-      setDangerCircle(place.geometry.location, marker);
       fetchData(cities[place.place_id]);
     }
-    else {
-      alert("There is no data available for this city");
-    }
-
+    map.setCenter(place.geometry.location);
+    setDangerCircle(place.geometry.location, marker);
   });
 
 }
+
+function setDangerCircle(location, marker) {
+  // Clear all slides from slick
+  $('#photos').slick('removeSlide', null, null, true);
+
+  for (var i = 0; i < 3; i++) {
+    var nearLocation = getNearRandomLocation(location);
+    sv.getPanorama({location: nearLocation, radius: 100}, showSVPhoto('#photos'));
+  }
+
+  safetyCircle.set('center', location);
+  marker.set('position', location);
+  dangerLevel = dangerEstimation(location);
+  style_circle(dangerLevel);
+}
+
 
 function showSVPhoto(divSelector) {
   return function processSVData(data, status) {
@@ -208,21 +220,6 @@ function getNearRandomLocation(location) {
   var lat = location.lat() + latDiff;
   var lng = location.lng() + lngDiff;
   return new google.maps.LatLng(lat, lng);
-}
-
-function setDangerCircle(location, marker) {
-  // Clear all slides from slick
-  $('#photos').slick('removeSlide', null, null, true);
-
-  for (var i = 0; i < 3; i++) {
-    var nearLocation = getNearRandomLocation(location);
-    sv.getPanorama({location: nearLocation, radius: 100}, showSVPhoto('#photos'));
-  }
-
-  safetyCircle.set('center', location);
-  marker.set('position', location);
-  dangerLevel = dangerEstimation(location);
-  style_circle(dangerLevel);
 }
 
 function dangerEstimation(myLocation) {
