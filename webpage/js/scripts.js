@@ -54,8 +54,9 @@ var crimeUrl = {
     "https://jsonblob.com/api/jsonBlob/78c777ce-5512-11e7-ae4c-cd2ab1866695"]
 };
 var crimeClusters = {
-  "sanfrancisco": 'https://jsonblob.com/api/jsonBlob/cdb16af6-5451-11e7-ae4c-c1ce04d62daf',
-  "campinas": 'https://jsonblob.com/api/jsonBlob/a9272b4a-5451-11e7-ae4c-d343c07eb64f'
+  "sanfrancisco": "https://jsonblob.com/api/jsonBlob/fc3a47d4-5611-11e7-ae4c-4d7101b2eb4b",
+  "campinas": "https://jsonblob.com/api/jsonBlob/2c0032a1-5612-11e7-ae4c-cdf4c7e2e85b",
+  "saopaulo": "https://jsonblob.com/api/jsonBlob/50a0b987-5612-11e7-ae4c-9bc364cf6448",
 };
 var crimeData;
 var crimeLocations;
@@ -171,12 +172,12 @@ function myMap() {
 
 function displayClusters(city){
 
-  var contentString =
-            '<p>Put some text here</p>';
+  var contentString;
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
   // //Get clusters centers
+  console.log(city);
   if (!clusterDisplay){
     $.ajax({
       async: true,
