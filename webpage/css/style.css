@@ -14,16 +14,6 @@
   background-color: #CCCCCC;
 }
 
-#photos {
-  margin: auto;
-}
-.slick-list {
-
-  margin: auto;
-  height: 300px;
-  background: #AAAAAA;
-
-}
 
 /* Optional: Makes the sample page fill the window. */
 html, body {
@@ -37,7 +27,6 @@ html, body {
     left: 0%;
     z-index: 5;
 }
-
 
 
 .buttonAbout{
