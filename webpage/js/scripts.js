@@ -1,5 +1,7 @@
 var map, heatmap, marker;
+var sv;
 var safetyCircle;
+var city;
 var gradient = [
   'rgba(216, 229, 0, 0)',
   'rgba(246, 255, 92, 1)',
@@ -17,7 +19,7 @@ var gradient = [
   'rgba(192, 17, 33, 1)',
   'rgba(191, 0, 36, 1)'
 ];
-var city = "sanfrancisco";
+
 var cities = {
   "ChIJIQBpAG2ahYAR_6128GcTUEo": "sanfrancisco",
   "ChIJJWNL5x3GyJQRKsJ4IWo65Rc": "campinas",
@@ -66,9 +68,31 @@ var relevantCrimes;
 var clusterDisplay;
 var clusters;
 
+$(document).ready(function() {
+  $('#photos').slick({
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000
+  });
+});
+
+function displayInfo(){
+  var details = document.getElementById('details');
+  if(details.style.width != "0px"){
+    document.getElementById('map').style.width = "100%";
+    document.getElementById('details').style.width = "0px";
+  }
+  else{
+    document.getElementById('map').style.width = "55%";
+    document.getElementById('details').style.width = "45%"
+  }
+    google.maps.event.trigger(map, "resize");
+}
+
 function myMap() {
 // Create a new StyledMapType object, passing it an array of styles,
 // and the name to be displayed on the map type control.
+  sv = new google.maps.StreetViewService();
 
   var oldStyledMapType = new google.maps.StyledMapType(
           oldMapStyle,
@@ -79,7 +103,7 @@ function myMap() {
           {name: 'Night Map'});
 
   //Default initialization with San Francisco
-  var latLng = new google.maps.LatLng(citiesGeo[city]);
+  var latLng = new google.maps.LatLng({lat: 37.468319, lng: -122.143936});
   var mapOptions = {
     center: latLng,
     zoom: 13,
@@ -121,13 +145,10 @@ function myMap() {
     setDangerCircle(event.latLng, marker);
     deactivateHeatmap();
   });
-
-  fetchData(city);
-
   // Create the search box
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
-  map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function () {
@@ -147,16 +168,17 @@ function myMap() {
       console.log("Returned place contains no geometry");
       return;
     }
+
     map.setCenter(place.geometry.location);
-
     if (place.place_id in cities){
-      setDangerCircle(place.geometry.location, marker);
       fetchData(cities[place.place_id]);
+      safetyCircle.set('center', place.geometry.location);
+      safetyCircle.set('fillColor', '#FFFFFF');
+      marker.set('position', place.geometry.location);
+      $("#currentCity").html("Current city: " + place.address_components[0].long_name)
     }
-    else {
-      alert("There is no data available for this city");
-    }
-
+    else
+      setDangerCircle(place.geometry.location, marker);
   });
 
   pinIcon = new google.maps.MarkerImage(
@@ -227,10 +249,53 @@ function toggleBounce(idx, infowindow) {
 
 
 function setDangerCircle(location, marker) {
+  // Clear all slides from slick
+  $('#photos').slick('removeSlide', null, null, true);
+
+  for (var i = 0; i < 3; i++) {
+    var nearLocation = getNearRandomLocation(location);
+    sv.getPanorama({location: nearLocation, radius: 100}, showSVPhoto('#photos'));
+  }
+
   safetyCircle.set('center', location);
   marker.set('position', location);
+  console.log(location);
   dangerLevel = dangerEstimation(location);
   style_circle(dangerLevel);
+}
+
+
+function showSVPhoto(divSelector) {
+  return function processSVData(data, status) {
+    if (status === 'OK') {
+      var pano = data.links[0].pano;
+      photoUrl = getStreetView(pano);
+      var childDiv = document.createElement("div");
+      var elemImg = document.createElement("img");
+      elemImg.setAttribute("src", photoUrl);
+      childDiv.appendChild(elemImg);
+      $(divSelector).slick('slickAdd', childDiv);
+    }
+  }
+}
+
+function getStreetView(pano) {
+  var heading = Math.floor((Math.random() * 110) + 125);
+  url = "https://maps.googleapis.com/maps/api/streetview?size=320x240&"
+        + "pano=" + pano + "&"
+        + "fov=90&"
+        + "heading=" + heading.toString() + "&"
+        + "pitch=10&"
+        + "key=AIzaSyA2lbbygUBcGlfOpC8EC6S-rvNcMMXbWfQ"
+  return url;
+}
+
+function getNearRandomLocation(location) {
+  var latDiff = (Math.floor((Math.random() * 10) - 5))/100;
+  var lngDiff = (Math.floor((Math.random() * 10) - 5))/100;
+  var lat = location.lat() + latDiff;
+  var lng = location.lng() + lngDiff;
+  return new google.maps.LatLng(lat, lng);
 }
 
 function dangerEstimation(myLocation) {
@@ -345,20 +410,11 @@ function barChart(relevantCrimes) {
           .style("text-anchor", "end")
           .attr("dx", "-.8em")
           .attr("dy", "-.55em")
-          .attr("transform", "rotate(-90)");
+          .attr("transform", "rotate(-45)");
 
   svg.append("g")
           .attr("class", "y axis")
           .call(yAxis);
-
-  svg.append("text")
-          .attr("class", "title")
-          .attr("x", (width / 2))
-          .attr("y", 20)
-          .attr("text-anchor", "middle")
-          .style("font-size", "16px")
-          .style("text-decoration", "underline")
-          .text("Number of registered incidents in 2016.");
 
   // Add bar chart
   svg.selectAll("bar")
@@ -433,11 +489,13 @@ function fetchData(city) {
         }
       }
       crimeLocations = crimeLocations.concat(locations);
-      if (idx == crimeUrl[city].length - 1)
+      if (idx == crimeUrl[city].length - 1) {
         visualizeCrime(null); //Display all crimes of the city
+      }
       }
     });
   }
+
 }
 
 function updateRadius(circle, radius) {

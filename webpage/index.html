@@ -4,19 +4,23 @@
     <title>Walking Safe</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"></meta>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css" />
     <script src="https://d3js.org/d3.v3.min.js"></script>
     <script
         src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
     </script>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
     <script type=text/javascript src="js/scripts.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
     <div id="floating-panel">
-      <p><button onclick="lowSeverityOnClick()" title="Low Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link low-btn"><img src="https://s14.postimg.org/n8h47rqkt/low_Severity.png" width="50px" /></button></p>
+      <p>
+        <button onclick="lowSeverityOnClick()" title="Low Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link low-btn"><img src="https://s14.postimg.org/n8h47rqkt/low_Severity.png" width="50px" /></button></p>
       <p>
         <button onclick="highSeverityOnClick()" title="High Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link high-btn"><img src="https://s14.postimg.org/kpvf734ul/high_Severity.png" width="50px" /></button>
       </p>
@@ -24,20 +28,23 @@
       <input type="button" name="Clusters" value="Clusters" onclick=displayClusters(city)>
     </p>
       <p>
-        <button onclick="aboutOnClick()" title="About" data-toggle="tooltip" data-placement="right" data-popup-open="popup-1" class="btn btn-md btn-link about-btn"><img src="https://s22.postimg.org/mkocupett/1494834244_19.png" width="50px" /></button>
+        <button onclick="displayInfo()" title="Display Info" data-toggle="tooltip" data-placement="right" class="buttonDisplay"><img src="./resources/images/displayInfothumb" width="50px" /></button></p>
       </p>
-
-
-      <input id="pac-input" class="controls" type="text" placeholder="City">
+      <input id="pac-input" class="controls" type="text">
     </div>
-
     <div id="map">
       <!--<script asyc defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6y7F-Nhsd9uzQs5v_B26ebqJ5xKbL2Sc&libraries=places&callback,visualization&callback=myMap"></script>-->
       <script async defer
               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2lbbygUBcGlfOpC8EC6S-rvNcMMXbWfQ&libraries=visualization,places&callback=myMap">
       </script>
     </div>
-
+    <div id="details">
+      <h1>Crimes' details</h1>
+      <h3 id="currentCity">Current city: </h3>
+      <svg class="chart"></svg>
+      <div id="photos">
+      </div>
+    </div>
     <div class="popup" data-popup="popup-1">
       <div class="popup-inner">
         <h2>Walking Safe</h2>

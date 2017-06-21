@@ -1,17 +1,45 @@
 #map {
     height: 100%;
+    width: 55%;
+    display: inline-block;
+    float: left;
 }
-/* Optional: Makes the sample page fill the window. */
+
+#details {
+  height: 100%;
+  width: 45%;
+  display: inline-block;
+  float: left;
+  background-color: #CCCCCC;
+}
+
+#photos {
+  margin: auto;
+  width: 70%;
+}
+
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
 #floating-panel {
     position: absolute;
     top: 35%;
     left: 0%;
     z-index: 5;
+}
+
+.buttonAbout {
+    position: absolute;
+    top: 200%;
+    left: 0%;
+    z-index: 5;
+}
+
+.buttonDisplay {
+    border-radius: 50%;
 }
 
 .popup {
@@ -24,7 +52,6 @@ html, body {
     background:rgba(0,0,0,0.75);
 }
 
-/* Inner */
 .popup-inner {
     max-width:700px;
     width:90%;
@@ -39,7 +66,6 @@ html, body {
     background:#fff;
 }
 
-/* Close Button */
 .popup-close {
     width:30px;
     height:30px;
@@ -78,18 +104,48 @@ html, body {
     width: 400px;
 }
 
-.low-btn {
-    opacity:0.4;
+.bar {
+  fill: #A00;
 }
 
-.high-btn {
-    opacity:0.4;
+.bar:hover {
+  fill: darkgreen;
 }
 
-.about-btn{
-    opacity:0.4;
-    position: absolute;
-    top: 200%;
-    left: 0%;
-    z-index: 5;
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+h1 {
+  font-size: 60px;
+  text-align: center;
+  text-shadow: 2px 3px 5px white;
+}
+
+.slick-list {
+  height: 150px;
+  margin-top: 40px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+.slick-track {
+  width: auto;
+  height: 150px;
+}
+svg {
+  height: 40%;
+  display: block;
+  margin: auto;
+}
+img {
+  display: block;
+  margin: auto;
 }
