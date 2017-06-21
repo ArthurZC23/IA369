@@ -5,8 +5,7 @@
     float: left;
 }
 
-#details{
-
+#details {
   height: 100%;
   width: 45%;
   display: inline-block;
@@ -19,12 +18,12 @@
   width: 70%;
 }
 
-/* Optional: Makes the sample page fill the window. */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
+
 #floating-panel {
     position: absolute;
     top: 35%;
@@ -32,8 +31,7 @@ html, body {
     z-index: 5;
 }
 
-
-.buttonAbout{
+.buttonAbout {
     position: absolute;
     top: 200%;
     left: 0%;
@@ -54,7 +52,6 @@ html, body {
     background:rgba(0,0,0,0.75);
 }
 
-/* Inner */
 .popup-inner {
     max-width:700px;
     width:90%;
@@ -69,7 +66,6 @@ html, body {
     background:#fff;
 }
 
-/* Close Button */
 .popup-close {
     width:30px;
     height:30px;
@@ -108,11 +104,11 @@ html, body {
     width: 400px;
 }
 
-.bar{
+.bar {
   fill: #A00;
 }
 
-.bar:hover{
+.bar:hover {
   fill: darkgreen;
 }
 
