@@ -1,4 +1,5 @@
 var map, heatmap, marker;
+var sv;
 var safetyCircle;
 var gradient = [
   'rgba(216, 229, 0, 0)',
@@ -75,6 +76,7 @@ function displayInfo(){
 function myMap() {
 // Create a new StyledMapType object, passing it an array of styles,
 // and the name to be displayed on the map type control.
+  sv = new google.maps.StreetViewService();
 
   var oldStyledMapType = new google.maps.StyledMapType(
           oldMapStyle,
@@ -167,7 +169,48 @@ function myMap() {
 
 }
 
+function showSVPhoto(div) {
+  return function processSVData(data, status) {
+    if (status === 'OK') {
+      var pano = data.links[0].pano;
+      photoUrl = getStreetView(pano);
+      var childDiv = document.createElement("div");
+      var elemImg = document.createElement("img");
+      elemImg.setAttribute("src", photoUrl);
+      childDiv.appendChild(elemImg);
+      div.appendChild(childDiv);
+    }
+  }
+}
+
+function getStreetView(pano) {
+  var heading = Math.floor((Math.random() * 110) + 125);
+  url = "https://maps.googleapis.com/maps/api/streetview?size=320x240&"
+        + "pano=" + pano + "&"
+        + "fov=90&"
+        + "heading=" + heading.toString() + "&"
+        + "pitch=10&"
+        + "key=AIzaSyA2lbbygUBcGlfOpC8EC6S-rvNcMMXbWfQ"
+  return url;
+}
+
+function getNearRandomLocation(location) {
+  var latDiff = (Math.floor((Math.random() * 10) - 5))/100;
+  var lngDiff = (Math.floor((Math.random() * 10) - 5))/100;
+  var lat = location.lat() + latDiff;
+  var lng = location.lng() + lngDiff;
+  return new google.maps.LatLng(lat, lng);
+}
+
 function setDangerCircle(location, marker) {
+  var photosDiv = document.getElementById('photos');
+  photosDiv.innerHTML = "";
+
+  for (var i = 0; i < 3; i++) {
+    var nearLocation = getNearRandomLocation(location);
+    sv.getPanorama({location: nearLocation, radius: 100}, showSVPhoto(photosDiv));
+  }
+
   safetyCircle.set('center', location);
   marker.set('position', location);
   dangerLevel = dangerEstimation(location);
