@@ -168,6 +168,7 @@ function myMap() {
       safetyCircle.set('center', place.geometry.location);
       safetyCircle.set('fillColor', '#FFFFFF');
       marker.set('position', place.geometry.location);
+      $("#currentCity").html("Current city: " + place.address_components[0].long_name)
     }
     else
       setDangerCircle(place.geometry.location, marker);
@@ -416,11 +417,13 @@ function fetchData(city) {
         }
       }
       crimeLocations = crimeLocations.concat(locations);
-      if (idx == crimeUrl[city].length - 1)
+      if (idx == crimeUrl[city].length - 1){
         visualizeCrime(null); //Display all crimes of the city
+      }
       }
     });
   }
+
 }
 
 function updateRadius(circle, radius) {
