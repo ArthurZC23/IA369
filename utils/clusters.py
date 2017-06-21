@@ -138,4 +138,5 @@ def main():
         orient='records'
     )
 
-main()
+if __name__ == '__main__':
+    main()

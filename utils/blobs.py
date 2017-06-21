@@ -23,5 +23,5 @@ def main():
             path_or_buf=new_file+str(i)+'.json',
             orient='records'
         )
-
-main()
+if __name__ == '__main__':
+    main()
