@@ -1,6 +1,7 @@
 var map, heatmap, marker;
 var sv;
 var safetyCircle;
+var city;
 var gradient = [
   'rgba(216, 229, 0, 0)',
   'rgba(246, 255, 92, 1)',
@@ -18,7 +19,7 @@ var gradient = [
   'rgba(192, 17, 33, 1)',
   'rgba(191, 0, 36, 1)'
 ];
-var city = "sanfrancisco";
+
 var cities = {
   "ChIJIQBpAG2ahYAR_6128GcTUEo": "sanfrancisco",
   "ChIJJWNL5x3GyJQRKsJ4IWo65Rc": "campinas",
@@ -95,7 +96,7 @@ function myMap() {
           {name: 'Night Map'});
 
   //Default initialization with San Francisco
-  var latLng = new google.maps.LatLng(citiesGeo[city]);
+  var latLng = new google.maps.LatLng({lat: 37.468319, lng: -122.143936});
   var mapOptions = {
     center: latLng,
     zoom: 13,
@@ -137,9 +138,6 @@ function myMap() {
     setDangerCircle(event.latLng, marker);
     deactivateHeatmap();
   });
-
-  fetchData(city);
-
   // Create the search box
   var input = document.getElementById('pac-input');
   var searchBox = new google.maps.places.SearchBox(input);
