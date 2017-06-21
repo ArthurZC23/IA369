@@ -15,7 +15,14 @@
 }
 
 #photos {
-  margin: 10%;
+  margin: auto;
+}
+.slick-list {
+
+  margin: auto;
+  height: 300px;
+  background: #AAAAAA;
+
 }
 
 /* Optional: Makes the sample page fill the window. */

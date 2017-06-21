@@ -337,7 +337,7 @@ function barChart(relevantCrimes) {
           .style("text-anchor", "end")
           .attr("dx", "-.8em")
           .attr("dy", "-.55em")
-          .attr("transform", "rotate(-90)");
+          .attr("transform", "rotate(-45)");
 
   svg.append("g")
           .attr("class", "y axis")
