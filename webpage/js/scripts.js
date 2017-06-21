@@ -172,7 +172,7 @@ function myMap() {
 
 function displayClusters(city){
 
-  var contentString;
+  var contentString = "<p>Put text here</p>";
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
@@ -193,15 +193,10 @@ function displayClusters(city){
           marker.setIcon(pinIcon);
           clusters.push(marker);
         }
-        for (idx in clusters){
-          clusters[idx].addListener('click', function(innerIdx) {
-            return function(){
-              infowindow.open(map, clusters[innerIdx]);
-            }
           }(idx));
           clusters[idx].addListener('click', function(innerIdx) {
             return function(){
-              toggleBounce(innerIdx);
+              toggleBounce(innerIdx, infowindow);
             }
           }(idx));
 
@@ -219,11 +214,13 @@ function displayClusters(city){
   }
 }
 
-function toggleBounce(idx) {
+function toggleBounce(idx, infowindow) {
   if (clusters[idx].getAnimation() !== null) {
     clusters[idx].setAnimation(null);
+    infowindow.close(map, clusters[idx]);
   } else {
     clusters[idx].setAnimation(google.maps.Animation.BOUNCE);
+    infowindow.open(map, clusters[idx]);
     for (otherIdx in clusters){
       if (otherIdx == idx) continue;
       clusters[otherIdx].setAnimation(null);
