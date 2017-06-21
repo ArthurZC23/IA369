@@ -60,6 +60,14 @@ var crimeType;
 var relevantCrimesIdx;
 var relevantCrimes;
 
+$(document).ready(function() {
+  $('#photos').slick({
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000
+  });
+});
+
 function displayInfo(){
   var details = document.getElementById('details');
   if(details.style.width != "0px"){
@@ -169,7 +177,7 @@ function myMap() {
 
 }
 
-function showSVPhoto(div) {
+function showSVPhoto(divSelector) {
   return function processSVData(data, status) {
     if (status === 'OK') {
       var pano = data.links[0].pano;
@@ -178,7 +186,7 @@ function showSVPhoto(div) {
       var elemImg = document.createElement("img");
       elemImg.setAttribute("src", photoUrl);
       childDiv.appendChild(elemImg);
-      div.appendChild(childDiv);
+      $(divSelector).slick('slickAdd', childDiv);
     }
   }
 }
@@ -203,12 +211,12 @@ function getNearRandomLocation(location) {
 }
 
 function setDangerCircle(location, marker) {
-  var photosDiv = document.getElementById('photos');
-  photosDiv.innerHTML = "";
+  // Clear all slides from slick
+  $('#photos').slick('removeSlide', null, null, true);
 
   for (var i = 0; i < 3; i++) {
     var nearLocation = getNearRandomLocation(location);
-    sv.getPanorama({location: nearLocation, radius: 100}, showSVPhoto(photosDiv));
+    sv.getPanorama({location: nearLocation, radius: 100}, showSVPhoto('#photos'));
   }
 
   safetyCircle.set('center', location);
