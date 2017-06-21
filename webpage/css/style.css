@@ -121,7 +121,3 @@ html, body {
   stroke: #000;
   shape-rendering: crispEdges;
 }
-
-h1 {
-  text-shadow: 2px 3px 5px white;
-}
