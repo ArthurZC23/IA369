@@ -165,8 +165,12 @@ function myMap() {
     }
 
     map.setCenter(place.geometry.location);
-    if (place.place_id in cities)
+    if (place.place_id in cities){
       fetchData(cities[place.place_id]);
+      safetyCircle.set('center', place.geometry.location);
+      safetyCircle.set('fillColor', '#FFFFFF');
+      marker.set('position', place.geometry.location);
+    }
     else
       setDangerCircle(place.geometry.location, marker);
   });
