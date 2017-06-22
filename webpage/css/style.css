@@ -134,18 +134,7 @@ img {
 }
 
 .slick-list {
-  height: auto;
   margin-top: 40px;
-  width: auto;
   margin-left: auto;
   margin-right: auto;
-}
-.slick-track {
-  height: auto;
-  width: auto;
-}
-
-#photos {
-  margin: auto;
-  width: auto;
 }
