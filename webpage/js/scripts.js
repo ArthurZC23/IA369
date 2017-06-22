@@ -56,8 +56,9 @@ var crimeUrl = {
     "https://jsonblob.com/api/jsonBlob/3d91987f-56e9-11e7-ae4c-0db5c235a9f4"]
 };
 var crimeClusters = {
-  "sanfrancisco": 'https://jsonblob.com/api/jsonBlob/cdb16af6-5451-11e7-ae4c-c1ce04d62daf',
-  "campinas": 'https://jsonblob.com/api/jsonBlob/a9272b4a-5451-11e7-ae4c-d343c07eb64f'
+  "sanfrancisco": "https://jsonblob.com/api/jsonBlob/3ab18431-574d-11e7-ae4c-3d94dfc06a5e",
+  "campinas": "https://jsonblob.com/api/jsonBlob/15a459e4-574d-11e7-ae4c-459afa344e77",
+  "saopaulo": "https://jsonblob.com/api/jsonBlob/61a8cc65-574d-11e7-ae4c-cb7647130866"
 };
 var crimeData;
 var crimeLocations;
@@ -172,7 +173,8 @@ function myMap() {
 
     map.setCenter(place.geometry.location);
     if (place.place_id in cities){
-      fetchData(cities[place.place_id]);
+      city = cities[place.place_id]
+      fetchData(city);
       safetyCircle.set('center', place.geometry.location);
       safetyCircle.set('fillColor', '#FFFFFF');
       marker.set('position', place.geometry.location);
@@ -262,7 +264,6 @@ function setDangerCircle(location, marker) {
 
   safetyCircle.set('center', location);
   marker.set('position', location);
-  console.log(location);
   dangerLevel = dangerEstimation(location);
   style_circle(dangerLevel);
 }
@@ -308,15 +309,12 @@ function dangerEstimation(myLocation) {
   threshold = safetyCircle.get('radius') / 1000;
   for (var i = 0; i < crimeLocations.length; i++) {
     dist = computeDistanceBetween(myLocation, crimeLocations[i]);
-//        console.log(threshold+ ' ' + dist)
-
     if (dist < threshold) {
       dangerLevel += 1;
       relevantCrimesIdx.push(i);
     }
   }
   visualizeCrime(relevantCrimesIdx);
-  console.log(dangerLevel)
   return dangerLevel;
 }
 
