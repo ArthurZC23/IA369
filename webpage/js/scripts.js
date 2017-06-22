@@ -48,7 +48,7 @@ var citiesGeo = {
     "lng": -47.063240
   }
 };
-var crimeUrl = {
+var crimeURL = {
   "sanfrancisco": [
     "https://jsonblob.com/api/jsonBlob/66d8d627-550a-11e7-ae4c-e174547a89e4",
     "https://jsonblob.com/api/jsonBlob/dea839ea-550a-11e7-ae4c-63f44d622f58",
@@ -479,32 +479,46 @@ function fetchData(city) {
   crimeData =  new Array();
   crimeLocations = new Array();
   crimeType = {};
-  var ajaxCounter = 0;
-
-  //Fill crimeData with JSON blobs content
-  for (var idx in crimeUrl[city]) {
+  var locations = new Array();
+  if (crimeURL[city].length > 1) {
+    var requests = new Array();
+    for (idx in crimeURL[city])
+      requests.push($.get(crimeURL[city][idx]));
+    var defer = $.when.apply($, requests);
+    defer.done(function(){
+      $.each(arguments, function(index, responseData){
+        crimeData = crimeData.concat(responseData[0]);
+      });
+      //Get crime location
+      for (var i = 0; i < crimeData.length; i++) {
+        crimeLocations[i] = [crimeData[i].lat, crimeData[i].lng];
+        //Determine crime types
+        if (!(crimeData[i].Category in crimeType))
+          crimeType[crimeData[i].Category] = 1;
+        else
+          crimeType[crimeData[i].Category] += 1;
+      }
+      visualizeCrime(null);
+    });
+  }
+  else {
     $.ajax({
       async: true,
-      url: crimeUrl[city][idx],
+      url: crimeURL[city],
       success: function(data) {
-        //Get crime location
-        var locations = new Array();
-        crimeData = crimeData.concat(data);
-        for (var i = 0; i < data.length; i++) {
-          locations[i] = [crimeData[i].lat, crimeData[i].lng];
+        crimeData = data;
+        for (var i = 0; i < crimeData.length; i++) {
+          crimeLocations[i] = [crimeData[i].lat, crimeData[i].lng];
           //Determine crime types
           if (!(crimeData[i].Category in crimeType))
             crimeType[crimeData[i].Category] = 1;
           else
             crimeType[crimeData[i].Category] += 1;
         }
-        crimeLocations = crimeLocations.concat(locations);
-        ajaxCounter += 1;
-        if (ajaxCounter == crimeUrl[city].length)
-          visualizeCrime(null); //Display all crimes of the city
-        }
-      });
-    }
+        visualizeCrime(null); //Display all crimes of the city
+      }
+    });
+  }
 }
 
 function updateRadius(circle, radius) {
