@@ -28,7 +28,12 @@ var crimeDataSource = {
   "sanfrancisco": "https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki",
   "saopaulo": "http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx",
   "campinas": "http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx"
-}
+};
+var crimeDates = {
+  "sanfrancisco": "year 2016",
+  "saopaulo": "april 2017",
+  "campinas": "april 2017"
+};
 var citiesGeo = {
   "sanfrancisco": {
     "lat": 37.773972,
@@ -387,7 +392,7 @@ function barChart(relevantCrimes) {
         type: 'bar'
     },
     title: {
-        text: 'Most common types of crimes'
+        text: 'Most common types of crimes in ' + crimeDates[city]
     },
     subtitle: {
         text: '<a href="' + crimeDataSource[city] + '"">Source of the data</a>'
@@ -433,7 +438,7 @@ function barChart(relevantCrimes) {
         enabled: false
     },
     series: [{
-        name: 'Year 1800',
+        showInLegend: false,
         data: topCrimeNumbers
     }]
 });
