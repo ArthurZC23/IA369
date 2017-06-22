@@ -360,78 +360,68 @@ function visualizeCrime(relevantCrimesIdx) {
 
 function barChart(relevantCrimes) {
 
-  //Remove previous plot and add new one
-  d3.select("svg > *")
-          .remove();
-  // set the dimensions of the canvas
-  var margin = {top: 20, right: 20, bottom: 200, left: 40},
-          width = 600 - margin.left - margin.right,
-          height = 450 - margin.top - margin.bottom;
+  Highcharts.chart('container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Historic World Population by Region'
+    },
+    subtitle: {
+        text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+    },
+    xAxis: {
+        categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+        title: {
+            text: null
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Population (millions)',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' millions'
+    },
+    plotOptions: {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        shadow: true
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'Year 1800',
+        data: [107, 31, 635, 203, 2]
+    }, {
+        name: 'Year 1900',
+        data: [133, 156, 947, 408, 6]
+    }, {
+        name: 'Year 2012',
+        data: [1052, 954, 4250, 740, 38]
+    }]
+});
 
-  // set the ranges
-  var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-  var y = d3.scale.linear().range([height, 0]);
-
-  // define the axis
-  var xAxis = d3.svg.axis()
-          .scale(x)
-          .orient("bottom")
-  var yAxis = d3.svg.axis()
-          .scale(y)
-          .orient("left")
-          .ticks(10);
-
-  // add the SVG element
-  var svg = d3.select("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform",
-                  "translate(" + margin.left + "," + margin.top + ")");
-
-  relevantCrimes.forEach(function (d) {
-    d.CrimeType = d.CrimeType;
-    d.Number = +d.Number;
-  });
-
-  // scale the range of the data
-  x.domain(relevantCrimes.map(function (d) {
-    return d.CrimeType;
-  }));
-  y.domain([0, d3.max(relevantCrimes, function (d) {
-      return d.Number;
-    })]);
-
-  // add axis
-  svg.append("g")
-          .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")")
-          .call(xAxis)
-          .selectAll("text")
-          .style("text-anchor", "end")
-          .attr("dx", "-.8em")
-          .attr("dy", "-.55em")
-          .attr("transform", "rotate(-45)");
-
-  svg.append("g")
-          .attr("class", "y axis")
-          .call(yAxis);
-
-  // Add bar chart
-  svg.selectAll("bar")
-          .data(relevantCrimes)
-          .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", function (d) {
-            return x(d.CrimeType);
-          })
-          .attr("width", x.rangeBand())
-          .attr("y", function (d) {
-            return y(d.Number);
-          })
-          .attr("height", function (d) {
-            return height - y(d.Number);
-          });
 }
 
 function style_circle(dangerLevel) {
