@@ -396,7 +396,7 @@ function barChart(relevantCrimes) {
     yAxis: {
         min: 0,
         title: {
-            text: 'Population (millions)',
+            text: 'Number of registered crimes',
             align: 'high'
         },
         labels: {
@@ -404,7 +404,7 @@ function barChart(relevantCrimes) {
         }
     },
     tooltip: {
-        valueSuffix: ' millions'
+        valueSuffix: 'registered occurrences'
     },
     plotOptions: {
         bar: {
