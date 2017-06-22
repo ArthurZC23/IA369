@@ -206,7 +206,6 @@ function displayClusters(city){
       async: true,
       url: crimeClusters[city],
       success: function(data) {
-        console.log(2);
         clusters = new Array();
         for (center of data){
           var marker = new google.maps.Marker({
@@ -262,7 +261,6 @@ function setDangerCircle(location, marker) {
 
   safetyCircle.set('center', location);
   marker.set('position', location);
-  console.log(location);
   dangerLevel = dangerEstimation(location);
   style_circle(dangerLevel);
 }
@@ -308,15 +306,12 @@ function dangerEstimation(myLocation) {
   threshold = safetyCircle.get('radius') / 1000;
   for (var i = 0; i < crimeLocations.length; i++) {
     dist = computeDistanceBetween(myLocation, crimeLocations[i]);
-//        console.log(threshold+ ' ' + dist)
-
     if (dist < threshold) {
       dangerLevel += 1;
       relevantCrimesIdx.push(i);
     }
   }
   visualizeCrime(relevantCrimesIdx);
-  console.log(dangerLevel)
   return dangerLevel;
 }
 
