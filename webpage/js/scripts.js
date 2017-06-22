@@ -273,6 +273,7 @@ function showSVPhoto(divSelector) {
       var childDiv = document.createElement("div");
       var elemImg = document.createElement("img");
       elemImg.setAttribute("src", photoUrl);
+      elemImg.setAttribute("width", "40%");
       childDiv.appendChild(elemImg);
       $(divSelector).slick('slickAdd', childDiv);
     }

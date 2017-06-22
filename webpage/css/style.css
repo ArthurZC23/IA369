@@ -1,3 +1,25 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+  font-size: 60px;
+  text-align: center;
+  text-shadow: 2px 3px 5px white;
+}
+
+svg {
+  height: 40%;
+  display: block;
+  margin: auto;
+}
+img {
+  display: block;
+  margin: auto;
+}
+
 #map {
     height: 100%;
     width: 55%;
@@ -11,17 +33,6 @@
   display: inline-block;
   float: left;
   background-color: #CCCCCC;
-}
-
-#photos {
-  margin: auto;
-  width: 70%;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 #floating-panel {
@@ -122,30 +133,19 @@ html, body {
   shape-rendering: crispEdges;
 }
 
-h1 {
-  font-size: 60px;
-  text-align: center;
-  text-shadow: 2px 3px 5px white;
-}
-
 .slick-list {
-  height: 150px;
+  height: auto;
   margin-top: 40px;
-  width: 70%;
+  width: auto;
   margin-left: auto;
   margin-right: auto;
-
 }
 .slick-track {
+  height: auto;
   width: auto;
-  height: 150px;
 }
-svg {
-  height: 40%;
-  display: block;
+
+#photos {
   margin: auto;
-}
-img {
-  display: block;
-  margin: auto;
+  width: auto;
 }
