@@ -56,8 +56,9 @@ var crimeUrl = {
     "https://jsonblob.com/api/jsonBlob/78c777ce-5512-11e7-ae4c-cd2ab1866695"]
 };
 var crimeClusters = {
-  "sanfrancisco": 'https://jsonblob.com/api/jsonBlob/cdb16af6-5451-11e7-ae4c-c1ce04d62daf',
-  "campinas": 'https://jsonblob.com/api/jsonBlob/a9272b4a-5451-11e7-ae4c-d343c07eb64f'
+  "sanfrancisco": "https://jsonblob.com/api/jsonBlob/3ab18431-574d-11e7-ae4c-3d94dfc06a5e",
+  "campinas": "https://jsonblob.com/api/jsonBlob/15a459e4-574d-11e7-ae4c-459afa344e77",
+  "saopaulo": "https://jsonblob.com/api/jsonBlob/61a8cc65-574d-11e7-ae4c-cb7647130866"
 };
 var crimeData;
 var crimeLocations;
