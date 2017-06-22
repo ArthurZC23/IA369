@@ -22,13 +22,13 @@ img {
 }
 
 .highcharts-root {
-  width: inherit;
-  height: inherit
+    width: inherit;
+    height: inherit
 }
 
 .highcharts-background {
-  width: inherit;
-  height: inherit;
+    width: inherit;
+    height: inherit;
 }
 
 #map {
