@@ -221,7 +221,7 @@ function displayClusters(city){
           for (idx in clusters){
             clusters[idx].addListener('click', function(innerIdx) {
               return function(){
-                toggleBounce(innerIdx, infowindow[innerIdx]);
+                toggleBounce(innerIdx, infowindow);
               }
             }(idx));
           }
@@ -240,17 +240,17 @@ function displayClusters(city){
 function toggleBounce(idx, infowindow) {
   if (clusters[idx].getAnimation() !== null) {
     clusters[idx].setAnimation(null);
-    infowindow.close(map, clusters[idx]);
+    infowindow[idx].close(map, clusters[idx]);
   } else {
     clusters[idx].setAnimation(google.maps.Animation.BOUNCE);
+    infowindow[idx].open(map, clusters[idx]);
     for (otherIdx in clusters){
       if (otherIdx == idx) continue;
       clusters[otherIdx].setAnimation(null);
-      infowindow.open(map, clusters[idx]);
+      infowindow[otherIdx].close(map, clusters[idx]);
     }
   }
 }
-
 
 function setDangerCircle(location, marker) {
   // Clear all slides from slick
