@@ -72,6 +72,7 @@ $(document).ready(function() {
   $('#photos').slick({
     slidesToShow: 1,
     autoplay: true,
+    arrows: false,
     autoplaySpeed: 2000
   });
 });
@@ -276,8 +277,6 @@ function showSVPhoto(divSelector) {
       elemImg.setAttribute("width", "40%");
       childDiv.appendChild(elemImg);
       $(divSelector).slick('slickAdd', childDiv);
-      //Remove slide buttons
-      $('.slick-arrow').remove();
     }
   }
 }
