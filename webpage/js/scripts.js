@@ -93,10 +93,17 @@ function displayInfo(){
   if(details.style.width != "0px"){
     document.getElementById('map').style.width = "100%";
     document.getElementById('details').style.width = "0px";
+    $('.stat-btn').css({
+      'opacity': 0.4
+    });
+    
   }
   else{
     document.getElementById('map').style.width = "55%";
     document.getElementById('details').style.width = "45%"
+    $('.stat-btn').css({
+      'opacity': 1
+    });
   }
     google.maps.event.trigger(map, "resize");
 }
@@ -215,6 +222,10 @@ function displayClusters(city){
   });
   // //Get clusters centers
   if (!clusterDisplay){
+    $('.cluster-btn').css({
+      'opacity': 0.4
+    });
+    
     $.ajax({
       async: true,
       url: crimeClusters[city],
@@ -241,6 +252,9 @@ function displayClusters(city){
     });
   }
   else{
+    $('.cluster-btn').css({
+      'opacity': 1
+    });
     //Remove markers
     for (idx in clusters)
       clusters[idx].setMap(null);
