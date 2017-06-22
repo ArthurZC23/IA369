@@ -21,6 +21,22 @@ img {
     margin: auto;
 }
 
+.highcharts-root {
+    width: inherit;
+    height: inherit
+}
+
+.highcharts-background {
+    width: inherit;
+    height: inherit;
+}
+
+#container {
+    width: 100%;
+    height: 40%;
+    margin: 0 auto;
+}
+
 #map {
     height: 100%;
     width: 55%;

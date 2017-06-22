@@ -23,7 +23,17 @@ var gradient = [
 var cities = {
   "ChIJIQBpAG2ahYAR_6128GcTUEo": "sanfrancisco",
   "ChIJJWNL5x3GyJQRKsJ4IWo65Rc": "campinas",
-  "ChIJ0WGkg4FEzpQRrlsz_whLqZs": "saopaulo"}
+  "ChIJ0WGkg4FEzpQRrlsz_whLqZs": "saopaulo"};
+var crimeDataSource = {
+  "sanfrancisco": "https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki",
+  "saopaulo": "http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx",
+  "campinas": "http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx"
+};
+var crimeDates = {
+  "sanfrancisco": "year 2016",
+  "saopaulo": "april 2017",
+  "campinas": "april 2017"
+};
 var citiesGeo = {
   "sanfrancisco": {
     "lat": 37.773972,
@@ -360,78 +370,79 @@ function visualizeCrime(relevantCrimesIdx) {
 
 function barChart(relevantCrimes) {
 
-  //Remove previous plot and add new one
-  d3.select("svg > *")
-          .remove();
-  // set the dimensions of the canvas
-  var margin = {top: 20, right: 20, bottom: 200, left: 40},
-          width = 600 - margin.left - margin.right,
-          height = 450 - margin.top - margin.bottom;
+  var topCrimeTypes = new Array();
+  var topCrimeNumbers = new Array();
+  var minCrimeNumber;
+  for (idx in relevantCrimes){
+    if (topCrimeTypes.length < 5) {
+      topCrimeTypes.push(relevantCrimes[idx].CrimeType)
+      topCrimeNumbers.push(relevantCrimes[idx].Number)
+    }
+    else {
+      minCrimeNumber = Math.min.apply(Math, topCrimeNumbers);
+      minIdx = topCrimeNumbers.indexOf(minCrimeNumber);
+      if (minCrimeNumber < relevantCrimes[idx].Number){
+        topCrimeNumbers[minIdx] = relevantCrimes[idx].Number;
+        topCrimeTypes[minIdx] = relevantCrimes[idx].CrimeType;
+      }
+    }
+  }
+  Highcharts.chart('container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Most common types of crimes in ' + crimeDates[city]
+    },
+    subtitle: {
+        text: '<a href="' + crimeDataSource[city] + '"">Source of the data</a>'
+    },
+    xAxis: {
+        categories: topCrimeTypes,
+        title: {
+            text: null
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Number of registered crimes',
+            align: 'high'
+        },
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    tooltip: {
+        valueSuffix: ' registered occurrences'
+    },
+    plotOptions: {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -40,
+        y: 80,
+        floating: true,
+        borderWidth: 1,
+        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        shadow: true
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        showInLegend: false,
+        data: topCrimeNumbers
+    }]
+});
 
-  // set the ranges
-  var x = d3.scale.ordinal().rangeRoundBands([0, width], .05);
-  var y = d3.scale.linear().range([height, 0]);
-
-  // define the axis
-  var xAxis = d3.svg.axis()
-          .scale(x)
-          .orient("bottom")
-  var yAxis = d3.svg.axis()
-          .scale(y)
-          .orient("left")
-          .ticks(10);
-
-  // add the SVG element
-  var svg = d3.select("svg")
-          .attr("width", width + margin.left + margin.right)
-          .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-          .attr("transform",
-                  "translate(" + margin.left + "," + margin.top + ")");
-
-  relevantCrimes.forEach(function (d) {
-    d.CrimeType = d.CrimeType;
-    d.Number = +d.Number;
-  });
-
-  // scale the range of the data
-  x.domain(relevantCrimes.map(function (d) {
-    return d.CrimeType;
-  }));
-  y.domain([0, d3.max(relevantCrimes, function (d) {
-      return d.Number;
-    })]);
-
-  // add axis
-  svg.append("g")
-          .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")")
-          .call(xAxis)
-          .selectAll("text")
-          .style("text-anchor", "end")
-          .attr("dx", "-.8em")
-          .attr("dy", "-.55em")
-          .attr("transform", "rotate(-45)");
-
-  svg.append("g")
-          .attr("class", "y axis")
-          .call(yAxis);
-
-  // Add bar chart
-  svg.selectAll("bar")
-          .data(relevantCrimes)
-          .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", function (d) {
-            return x(d.CrimeType);
-          })
-          .attr("width", x.rangeBand())
-          .attr("y", function (d) {
-            return y(d.Number);
-          })
-          .attr("height", function (d) {
-            return height - y(d.Number);
-          });
 }
 
 function style_circle(dangerLevel) {
