@@ -276,6 +276,8 @@ function showSVPhoto(divSelector) {
       elemImg.setAttribute("width", "40%");
       childDiv.appendChild(elemImg);
       $(divSelector).slick('slickAdd', childDiv);
+      //Remove slide buttons
+      $('.slick-arrow').remove();
     }
   }
 }
