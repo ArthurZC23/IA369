@@ -72,6 +72,7 @@ $(document).ready(function() {
   $('#photos').slick({
     slidesToShow: 1,
     autoplay: true,
+    arrows: false,
     autoplaySpeed: 2000
   });
 });
@@ -281,7 +282,7 @@ function showSVPhoto(divSelector) {
 
 function getStreetView(pano) {
   var heading = Math.floor((Math.random() * 110) + 125);
-  url = "https://maps.googleapis.com/maps/api/streetview?size=320x240&"
+  url = "https://maps.googleapis.com/maps/api/streetview?size=220x160&"
         + "pano=" + pano + "&"
         + "fov=90&"
         + "heading=" + heading.toString() + "&"
