@@ -175,7 +175,9 @@ function myMap() {
       safetyCircle.set('center', place.geometry.location);
       safetyCircle.set('fillColor', '#FFFFFF');
       marker.set('position', place.geometry.location);
-      $("#currentCity").html("Current city: " + place.address_components[0].long_name)
+      $("#currentCity").html("Current city: " + place.address_components[0].long_name);
+      city=cities[place.place_id];
+      deactivateHeatmap();
     }
     else
       setDangerCircle(place.geometry.location, marker);
