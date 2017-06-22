@@ -39,14 +39,14 @@ img {
 #floating-panel {
     position: absolute;
     top: 35%;
-    left: 0%;
+    left: 0;
     z-index: 5;
 }
 
 .buttonAbout {
     position: absolute;
     top: 200%;
-    left: 0%;
+    left: 0;
     z-index: 5;
 }
 
@@ -59,8 +59,8 @@ img {
     height:100%;
     display:none;
     position:fixed;
-    top:0px;
-    left:0px;
+    top:0;
+    left:0;
     background:rgba(0,0,0,0.75);
 }
 
@@ -73,7 +73,7 @@ img {
     left:50%;
     -webkit-transform:translate(-50%, -50%);
     transform:translate(-50%, -50%);
-    box-shadow:0px 2px 6px rgba(0,0,0,1);
+    box-shadow:0 2px 6px rgba(0,0,0,1);
     border-radius:3px;
     background:#fff;
 }
