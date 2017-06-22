@@ -274,7 +274,6 @@ function showSVPhoto(divSelector) {
       var childDiv = document.createElement("div");
       var elemImg = document.createElement("img");
       elemImg.setAttribute("src", photoUrl);
-      elemImg.setAttribute("width", "40%");
       childDiv.appendChild(elemImg);
       $(divSelector).slick('slickAdd', childDiv);
     }
@@ -283,7 +282,7 @@ function showSVPhoto(divSelector) {
 
 function getStreetView(pano) {
   var heading = Math.floor((Math.random() * 110) + 125);
-  url = "https://maps.googleapis.com/maps/api/streetview?size=320x240&"
+  url = "https://maps.googleapis.com/maps/api/streetview?size=220x160&"
         + "pano=" + pano + "&"
         + "fov=90&"
         + "heading=" + heading.toString() + "&"
