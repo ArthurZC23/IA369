@@ -195,11 +195,8 @@ function myMap() {
 
 function displayClusters(city){
 
-  var contentString =
-            '<p>Put some text here</p>';
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
+  var contentString;
+  var infowindow = new Array();
   // //Get clusters centers
   if (!clusterDisplay){
     $.ajax({
@@ -215,11 +212,16 @@ function displayClusters(city){
         });
           marker.setIcon(pinIcon);
           clusters.push(marker);
+          contentString = "<p>Number of crimes: " + center["Number of crimes"] + "</p><p>Percentage of total crimes: " + center["Percentage of total crimes"] + "</p>"
+          info = new google.maps.InfoWindow({
+            content: contentString
+          });
+          infowindow.push(info)
         }
           for (idx in clusters){
             clusters[idx].addListener('click', function(innerIdx) {
               return function(){
-                toggleBounce(innerIdx, infowindow);
+                toggleBounce(innerIdx, infowindow[innerIdx]);
               }
             }(idx));
           }
