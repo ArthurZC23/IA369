@@ -23,7 +23,12 @@ var gradient = [
 var cities = {
   "ChIJIQBpAG2ahYAR_6128GcTUEo": "sanfrancisco",
   "ChIJJWNL5x3GyJQRKsJ4IWo65Rc": "campinas",
-  "ChIJ0WGkg4FEzpQRrlsz_whLqZs": "saopaulo"}
+  "ChIJ0WGkg4FEzpQRrlsz_whLqZs": "saopaulo"};
+var crimeDataSource = {
+  "sanfrancisco": "https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki",
+  "saopaulo": "http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx",
+  "campinas": "http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx"
+}
 var citiesGeo = {
   "sanfrancisco": {
     "lat": 37.773972,
@@ -385,7 +390,7 @@ function barChart(relevantCrimes) {
         text: 'Most common types of crimes'
     },
     subtitle: {
-        text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
+        text: '<a href="' + crimeDataSource[city] + '"">Source of the data</a>'
     },
     xAxis: {
         categories: topCrimeTypes,
@@ -404,7 +409,7 @@ function barChart(relevantCrimes) {
         }
     },
     tooltip: {
-        valueSuffix: 'registered occurrences'
+        valueSuffix: ' registered occurrences'
     },
     plotOptions: {
         bar: {
