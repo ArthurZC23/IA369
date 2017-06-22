@@ -480,34 +480,32 @@ function fetchData(city) {
   crimeData =  new Array();
   crimeLocations = new Array();
   crimeType = {};
+  var ajaxCounter = 0;
 
   //Fill crimeData with JSON blobs content
   for (var idx in crimeUrl[city]) {
     $.ajax({
-    async: true,
-    url: crimeUrl[city][idx],
-    success: function(data) {
-      //Get crime location
-      var locations = new Array();
-      crimeData = crimeData.concat(data);
-      for (var i = 0; i < data.length; i++) {
-        locations[i] = [crimeData[i].lat, crimeData[i].lng];
-        //Determine crime types
-        if (!(crimeData[i].Category in crimeType)) {
-          crimeType[crimeData[i].Category] = 1;
+      async: true,
+      url: crimeUrl[city][idx],
+      success: function(data) {
+        //Get crime location
+        var locations = new Array();
+        crimeData = crimeData.concat(data);
+        for (var i = 0; i < data.length; i++) {
+          locations[i] = [crimeData[i].lat, crimeData[i].lng];
+          //Determine crime types
+          if (!(crimeData[i].Category in crimeType))
+            crimeType[crimeData[i].Category] = 1;
+          else
+            crimeType[crimeData[i].Category] += 1;
         }
-        else {
-          crimeType[crimeData[i].Category] += 1;
+        crimeLocations = crimeLocations.concat(locations);
+        ajaxCounter += 1;
+        if (ajaxCounter == crimeUrl[city].length)
+          visualizeCrime(null); //Display all crimes of the city
         }
-      }
-      crimeLocations = crimeLocations.concat(locations);
-      if (idx == crimeUrl[city].length - 1) {
-        visualizeCrime(null); //Display all crimes of the city
-      }
-      }
-    });
-  }
-
+      });
+    }
 }
 
 function updateRadius(circle, radius) {
