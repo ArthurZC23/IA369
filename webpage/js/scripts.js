@@ -360,18 +360,35 @@ function visualizeCrime(relevantCrimesIdx) {
 
 function barChart(relevantCrimes) {
 
+  var topCrimeTypes = new Array();
+  var topCrimeNumbers = new Array();
+  var minCrimeNumber;
+  for (idx in relevantCrimes){
+    if (topCrimeTypes.length < 5) {
+      topCrimeTypes.push(relevantCrimes[idx].CrimeType)
+      topCrimeNumbers.push(relevantCrimes[idx].Number)
+    }
+    else {
+      minCrimeNumber = Math.min.apply(Math, topCrimeNumbers);
+      minIdx = topCrimeNumbers.indexOf(minCrimeNumber);
+      if (minCrimeNumber < relevantCrimes[idx].Number){
+        topCrimeNumbers[minIdx] = relevantCrimes[idx].Number;
+        topCrimeTypes[minIdx] = relevantCrimes[idx].CrimeType;
+      }
+    }
+  }
   Highcharts.chart('container', {
     chart: {
         type: 'bar'
     },
     title: {
-        text: 'Historic World Population by Region'
+        text: 'Most common types of crimes'
     },
     subtitle: {
         text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
     },
     xAxis: {
-        categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
+        categories: topCrimeTypes,
         title: {
             text: null
         }
@@ -412,13 +429,7 @@ function barChart(relevantCrimes) {
     },
     series: [{
         name: 'Year 1800',
-        data: [107, 31, 635, 203, 2]
-    }, {
-        name: 'Year 1900',
-        data: [133, 156, 947, 408, 6]
-    }, {
-        name: 'Year 2012',
-        data: [1052, 954, 4250, 740, 38]
+        data: topCrimeNumbers
     }]
 });
 
