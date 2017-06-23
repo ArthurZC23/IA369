@@ -481,6 +481,13 @@ function fetchData(city) {
   crimeType = {};
   var locations = new Array();
   if (crimeURL[city].length > 1) {
+    // Load data from all the JSON blobs using jQuery promisses. When all
+    // the promisses are resolved, we can update crime global variables
+    //in one batch.
+    //This approche is better than synchronous calls and a queue of asynchrnous
+    //calls as these approaches take too long to load.
+    //Making asynchrnous using a for loop is prone to error as there is no
+    //coordination between the AJAX callbacks. 
     var requests = new Array();
     for (idx in crimeURL[city]) {
       requests.push($.get(crimeURL[city][idx]));
