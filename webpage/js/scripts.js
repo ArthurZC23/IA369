@@ -487,7 +487,7 @@ function fetchData(city) {
     //This approche is better than synchronous calls and a queue of asynchrnous
     //calls as these approaches take too long to load.
     //Making asynchrnous using a for loop is prone to error as there is no
-    //coordination between the AJAX callbacks. 
+    //coordination between the AJAX callbacks.
     var requests = new Array();
     for (idx in crimeURL[city]) {
       requests.push($.get(crimeURL[city][idx]));
@@ -501,10 +501,8 @@ function fetchData(city) {
       for (var i = 0; i < crimeData.length; i++) {
         crimeLocations[i] = [crimeData[i].lat, crimeData[i].lng];
         //Determine crime types
-        if (!(crimeData[i].Category in crimeType))
-          crimeType[crimeData[i].Category] = 1;
-        else
-          crimeType[crimeData[i].Category] += 1;
+        crimeData[i].Category in crimeType ?
+        crimeType[crimeData[i].Category]++ : crimeType[crimeData[i].Category] = 1;
       }
       visualizeCrime(null);
     });
