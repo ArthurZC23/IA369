@@ -157,17 +157,9 @@ img {
 }
 
 .stat-btn {
-  opacity: 0.4
-}
-
-.high-btn {
-  opacity: 1
-}
-
-.low-btn {
   opacity: 1
 }
 
 .cluster-btn{
-  opacity: 1
+  opacity: 0.4
 }

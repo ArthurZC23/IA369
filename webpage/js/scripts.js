@@ -148,6 +148,8 @@ function myMap() {
     data: getLowSeverityData(),
     map: map
   });
+  
+  deactivateHeatmap();
 
   safetyCircle = new google.maps.Circle({
     strokeColor: '#000000',
@@ -223,7 +225,7 @@ function displayClusters(city){
   // //Get clusters centers
   if (!clusterDisplay){
     $('.cluster-btn').css({
-      'opacity': 0.4
+      'opacity': 1
     });
     
     $.ajax({
@@ -253,7 +255,7 @@ function displayClusters(city){
   }
   else{
     $('.cluster-btn').css({
-      'opacity': 1
+      'opacity': 0.4
     });
     //Remove markers
     for (idx in clusters)
