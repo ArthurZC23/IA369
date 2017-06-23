@@ -482,8 +482,9 @@ function fetchData(city) {
   var locations = new Array();
   if (crimeURL[city].length > 1) {
     var requests = new Array();
-    for (idx in crimeURL[city])
+    for (idx in crimeURL[city]) {
       requests.push($.get(crimeURL[city][idx]));
+    }
     var defer = $.when.apply($, requests);
     defer.done(function(){
       $.each(arguments, function(index, responseData){
