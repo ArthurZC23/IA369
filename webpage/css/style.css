@@ -59,6 +59,11 @@ img {
     z-index: 5;
 }
 
+.buttonAbout {
+    position:fixed;
+    top:88%;
+}
+
 .buttonDisplay {
     border-radius: 50%;
 }
