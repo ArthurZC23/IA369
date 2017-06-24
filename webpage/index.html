@@ -36,6 +36,7 @@
               safetyCircle.set('center', citiesGeo[city]);
               safetyCircle.set('fillColor', '#FFFFFF');
               marker.set('position', citiesGeo[city]);
+              map.setCenter(citiesGeo[city]);
               deactivateHeatmap();
           });
         </script>
