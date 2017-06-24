@@ -34,20 +34,7 @@ var crimeDates = {
   "saopaulo": "april 2017",
   "campinas": "april 2017"
 };
-var citiesGeo = {
-  "sanfrancisco": {
-    "lat": 37.773972,
-    "lng": -122.431297
-  },
-  "saopaulo": {
-    "lat": -23.533773,
-    "lng": -46.625290
-  },
-  "campinas": {
-    "lat": -22.907104,
-    "lng": -47.063240
-  }
-};
+var citiesGeo;
 var crimeURL = {
   "sanfrancisco": [
     "https://jsonblob.com/api/jsonBlob/66d8d627-550a-11e7-ae4c-e174547a89e4",
@@ -201,6 +188,12 @@ function myMap() {
       null, /* anchor is bottom center of the scaled image */
       new google.maps.Size(15, 15)
   );
+  citiesGeo = {
+    "sanfrancisco": google.maps.LatLng(37.773972, -122.431297),
+    "saopaulo": google.maps.LatLng(-23.533773, -46.625290),
+    "campinas": google.maps.LatLng(-22.907104,  -47.063240),
+  };
+
 
 }
 
