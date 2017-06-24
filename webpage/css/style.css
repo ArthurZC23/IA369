@@ -54,16 +54,14 @@ img {
 
 #floating-panel {
     position: absolute;
-    top: 35%;
+    top: 30%;
     left: 0;
     z-index: 5;
 }
 
 .buttonAbout {
-    position: absolute;
-    top: 200%;
-    left: 0;
-    z-index: 5;
+    position:fixed;
+    top:88%;
 }
 
 .buttonDisplay {
