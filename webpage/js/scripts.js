@@ -216,11 +216,8 @@ function myMap() {
 
 function displayClusters(city){
 
-  var contentString =
-            '<p>Put some text here</p>';
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
+  var contentString;
+  var infowindow = new Array();
   // //Get clusters centers
   if (!clusterDisplay){
     $('.cluster-btn').css({
@@ -240,6 +237,11 @@ function displayClusters(city){
         });
           marker.setIcon(pinIcon);
           clusters.push(marker);
+          contentString = "<p>Number of crimes: " + center["Number of crimes"] + "</p><p>Percentage of total crimes: " + center["Percentage of total crimes"] + "</p>"
+          info = new google.maps.InfoWindow({
+            content: contentString
+          });
+          infowindow.push(info)
         }
           for (idx in clusters){
             clusters[idx].addListener('click', function(innerIdx) {
@@ -266,17 +268,17 @@ function displayClusters(city){
 function toggleBounce(idx, infowindow) {
   if (clusters[idx].getAnimation() !== null) {
     clusters[idx].setAnimation(null);
-    infowindow.close(map, clusters[idx]);
+    infowindow[idx].close(map, clusters[idx]);
   } else {
     clusters[idx].setAnimation(google.maps.Animation.BOUNCE);
+    infowindow[idx].open(map, clusters[idx]);
     for (otherIdx in clusters){
       if (otherIdx == idx) continue;
       clusters[otherIdx].setAnimation(null);
-      infowindow.open(map, clusters[idx]);
+      infowindow[otherIdx].close(map, clusters[idx]);
     }
   }
 }
-
 
 function setDangerCircle(location, marker) {
   // Clear all slides from slick
