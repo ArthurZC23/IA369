@@ -194,12 +194,10 @@ function myMap() {
       new google.maps.Size(15, 15)
   );
   citiesGeo = {
-    "sanfrancisco": google.maps.LatLng(37.773972, -122.431297),
-    "saopaulo": google.maps.LatLng(-23.533773, -46.625290),
-    "campinas": google.maps.LatLng(-22.907104,  -47.063240),
+    "sanfrancisco": new google.maps.LatLng(37.773972, -122.431297),
+    "saopaulo": new google.maps.LatLng(-23.533773, -46.625290),
+    "campinas": new google.maps.LatLng(-22.907104,  -47.063240),
   };
-
-
 }
 
 function displayClusters(city){
