@@ -28,8 +28,15 @@
           <option value=null selected="selected">None</option>
         </select>
         <script type="text/javascript">
-          document.getElementById("dropdown").addEventListener('change', function() {
-            
+          var drop = document.getElementById("dropdown");
+          drop.addEventListener('change', function() {
+              city = drop.options[drop.selectedIndex].value;
+              fetchData(city);
+              $("#currentCity").html("Current city: " + citiesNames[city]);
+              safetyCircle.set('center', citiesGeo[city]);
+              safetyCircle.set('fillColor', '#FFFFFF');
+              marker.set('position', citiesGeo[city]);
+              deactivateHeatmap();
           });
         </script>
       </p>
