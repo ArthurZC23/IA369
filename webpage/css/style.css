@@ -161,3 +161,7 @@ img {
 .cluster-btn{
     opacity: 0.4
 }
+
+#currentCity {
+    margin: 2%;
+}
