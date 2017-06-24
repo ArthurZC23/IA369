@@ -57,6 +57,11 @@ var crimeClusters = {
   "campinas": "https://jsonblob.com/api/jsonBlob/15a459e4-574d-11e7-ae4c-459afa344e77",
   "saopaulo": "https://jsonblob.com/api/jsonBlob/61a8cc65-574d-11e7-ae4c-cb7647130866"
 };
+var citiesNames = {
+  "sanfrancisco": "San Francisco",
+  "campinas": "Campinas",
+  "saopaulo": "São Paulo"
+}
 var crimeData;
 var crimeLocations;
 var crimeType;
