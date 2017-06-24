@@ -415,10 +415,10 @@ function barChart(relevantCrimes) {
         }
     },
     title: {
-        text: 'Most common types of crimes in ' + crimeDates[city]
+        text: 'Most common types of crimes'
     },
     subtitle: {
-        text: '<a href="' + crimeDataSource[city] + '"">Source of the data</a>'
+        text: crimeDates[city]
     },
     xAxis: {
         categories: topCrimeTypes,
