@@ -402,7 +402,17 @@ function barChart(relevantCrimes) {
   }
   Highcharts.chart('container', {
     chart: {
-        type: 'bar'
+        type: 'bar',
+        events:{
+          load: function() {
+            this.credits.element.onclick = function() {
+              window.open(
+                crimeDataSource[city],
+                '_blank'
+              );
+            }
+          }
+        }
     },
     title: {
         text: 'Most common types of crimes in ' + crimeDates[city]
@@ -448,14 +458,13 @@ function barChart(relevantCrimes) {
         shadow: true
     },
     credits: {
-        enabled: false
+      text: "Source of data"
     },
     series: [{
         showInLegend: false,
         data: topCrimeNumbers
     }]
-});
-
+  });
 }
 
 function style_circle(dangerLevel) {
