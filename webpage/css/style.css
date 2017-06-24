@@ -59,13 +59,6 @@ img {
     z-index: 5;
 }
 
-.buttonAbout {
-    position: absolute;
-    top: 200%;
-    left: 0;
-    z-index: 5;
-}
-
 .buttonDisplay {
     border-radius: 50%;
 }
