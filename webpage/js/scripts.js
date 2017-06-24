@@ -60,10 +60,10 @@ var crimeURL = {
     "https://jsonblob.com/api/jsonBlob/00189953-550c-11e7-ae4c-0b90d5caeebc",
     "https://jsonblob.com/api/jsonBlob/26d37497-550c-11e7-ae4c-870706833c4d",
     "https://jsonblob.com/api/jsonBlob/fc244613-5511-11e7-ae4c-6737be268115"],
-  "campinas": ["https://jsonblob.com/api/jsonBlob/8a352e6b-5513-11e7-ae4c-17f6ef9604ff"],
+  "campinas": ["https://jsonblob.com/api/jsonBlob/b0502d48-5911-11e7-ae4c-111ff2d5263a"],
   "saopaulo": [
-    "https://jsonblob.com/api/jsonBlob/ebc5806c-56e8-11e7-ae4c-53e8e800c0d5",
-    "https://jsonblob.com/api/jsonBlob/3d91987f-56e9-11e7-ae4c-0db5c235a9f4"]
+    "https://jsonblob.com/api/jsonBlob/47485cc8-5911-11e7-ae4c-7d807b32c4e1",
+    "https://jsonblob.com/api/jsonBlob/530b2f13-5910-11e7-ae4c-2b1803ab63d6"]
 };
 var crimeClusters = {
   "sanfrancisco": "https://jsonblob.com/api/jsonBlob/3ab18431-574d-11e7-ae4c-3d94dfc06a5e",
@@ -899,3 +899,4 @@ var oldMapStyle = [
     stylers: [{color: '#92998d'}]
   }
 ];
+
