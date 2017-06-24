@@ -899,4 +899,3 @@ var oldMapStyle = [
     stylers: [{color: '#92998d'}]
   }
 ];
-
