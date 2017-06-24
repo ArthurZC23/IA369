@@ -191,17 +191,7 @@ function myMap() {
     }
 
     map.setCenter(place.geometry.location);
-    if (place.place_id in cities){
-      city = cities[place.place_id];
-      fetchData(city);
-      safetyCircle.set('center', place.geometry.location);
-      safetyCircle.set('fillColor', '#FFFFFF');
-      marker.set('position', place.geometry.location);
-      $("#currentCity").html("Current city: " + place.address_components[0].long_name);
-      deactivateHeatmap();
-    }
-    else
-      setDangerCircle(place.geometry.location, marker);
+    setDangerCircle(place.geometry.location, marker);
   });
 
   pinIcon = new google.maps.MarkerImage(
