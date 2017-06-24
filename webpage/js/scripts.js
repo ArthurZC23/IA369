@@ -34,20 +34,7 @@ var crimeDates = {
   "saopaulo": "april 2017",
   "campinas": "april 2017"
 };
-var citiesGeo = {
-  "sanfrancisco": {
-    "lat": 37.773972,
-    "lng": -122.431297
-  },
-  "saopaulo": {
-    "lat": -23.533773,
-    "lng": -46.625290
-  },
-  "campinas": {
-    "lat": -22.907104,
-    "lng": -47.063240
-  }
-};
+var citiesGeo;
 var crimeURL = {
   "sanfrancisco": [
     "https://jsonblob.com/api/jsonBlob/66d8d627-550a-11e7-ae4c-e174547a89e4",
@@ -70,6 +57,11 @@ var crimeClusters = {
   "campinas": "https://jsonblob.com/api/jsonBlob/15a459e4-574d-11e7-ae4c-459afa344e77",
   "saopaulo": "https://jsonblob.com/api/jsonBlob/61a8cc65-574d-11e7-ae4c-cb7647130866"
 };
+var citiesNames = {
+  "sanfrancisco": "San Francisco",
+  "campinas": "Campinas",
+  "saopaulo": "São Paulo"
+}
 var crimeData;
 var crimeLocations;
 var crimeType;
@@ -87,6 +79,18 @@ $(document).ready(function() {
     autoplaySpeed: 2000
   });
 });
+
+function cityChange() {
+  var drop = document.getElementById("dropdown");
+  city = drop.options[drop.selectedIndex].value;
+  fetchData(city);
+  $("#currentCity").html("Current city: " + citiesNames[city]);
+  safetyCircle.set('center', citiesGeo[city]);
+  safetyCircle.set('fillColor', '#FFFFFF');
+  marker.set('position', citiesGeo[city]);
+  map.setCenter(citiesGeo[city]);
+  deactivateHeatmap();
+}
 
 function displayInfo(){
   var details = document.getElementById('details');
@@ -191,17 +195,7 @@ function myMap() {
     }
 
     map.setCenter(place.geometry.location);
-    if (place.place_id in cities){
-      city = cities[place.place_id];
-      fetchData(city);
-      safetyCircle.set('center', place.geometry.location);
-      safetyCircle.set('fillColor', '#FFFFFF');
-      marker.set('position', place.geometry.location);
-      $("#currentCity").html("Current city: " + place.address_components[0].long_name);
-      deactivateHeatmap();
-    }
-    else
-      setDangerCircle(place.geometry.location, marker);
+    setDangerCircle(place.geometry.location, marker);
   });
 
   pinIcon = new google.maps.MarkerImage(
@@ -211,7 +205,11 @@ function myMap() {
       null, /* anchor is bottom center of the scaled image */
       new google.maps.Size(15, 15)
   );
-
+  citiesGeo = {
+    "sanfrancisco": new google.maps.LatLng(37.773972, -122.431297),
+    "saopaulo": new google.maps.LatLng(-23.533773, -46.625290),
+    "campinas": new google.maps.LatLng(-22.907104,  -47.063240),
+  };
 }
 
 function displayClusters(city){
@@ -708,7 +706,6 @@ $(function () {
 
   });
 });
-
 
 var nightMapStyle = [
   {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
