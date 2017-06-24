@@ -80,6 +80,18 @@ $(document).ready(function() {
   });
 });
 
+function cityChange() {
+  var drop = document.getElementById("dropdown");
+  city = drop.options[drop.selectedIndex].value;
+  fetchData(city);
+  $("#currentCity").html("Current city: " + citiesNames[city]);
+  safetyCircle.set('center', citiesGeo[city]);
+  safetyCircle.set('fillColor', '#FFFFFF');
+  marker.set('position', citiesGeo[city]);
+  map.setCenter(citiesGeo[city]);
+  deactivateHeatmap();
+}
+
 function displayInfo(){
   var details = document.getElementById('details');
   if(details.style.width != "0px"){
