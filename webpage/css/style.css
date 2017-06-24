@@ -50,14 +50,14 @@ img {
 
 #map {
     height: 100%;
-    width: 55%;
+    width: 100%;
     display: inline-block;
     float: left;
 }
 
 #details {
     height: 100%;
-    width: 45%;
+    width: 0px;
     display: inline-block;
     float: left;
     background-color: #CCCCCC;
@@ -166,7 +166,7 @@ img {
 }
 
 .stat-btn {
-    opacity: 1
+    opacity: 0.4;
 }
 
 .cluster-btn{
