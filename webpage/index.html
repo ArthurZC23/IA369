@@ -21,12 +21,17 @@
   <body>
     <div id="floating-panel">
       <p>
-        <select id="dropDown">
+        <select id="dropdown">
           <option value="sanfrancisco">San Francisco</option>
           <option value="saopaulo">Sao Paulo</option>
           <option value="campinas">Campinas</option>
-          <option value=null>None</option>
+          <option value=null selected="selected">None</option>
         </select>
+        <script type="text/javascript">
+          document.getElementById("dropdown").addEventListener('change', function() {
+            
+          });
+        </script>
       </p>
       <p>
         <button onclick="lowSeverityOnClick()" title="Low Severity Crimes" data-toggle="tooltip" data-placement="right" class="btn btn-md btn-link low-btn"><img src="https://s14.postimg.org/n8h47rqkt/low_Severity.png" alt="Low Severity Crimes" width="50" /></button></p>
