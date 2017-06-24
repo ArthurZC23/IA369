@@ -96,7 +96,7 @@ function displayInfo(){
     $('.stat-btn').css({
       'opacity': 0.4
     });
-    
+
   }
   else{
     document.getElementById('map').style.width = "55%";
@@ -148,7 +148,7 @@ function myMap() {
     data: getLowSeverityData(),
     map: map
   });
-  
+
   deactivateHeatmap();
 
   safetyCircle = new google.maps.Circle({
@@ -226,7 +226,7 @@ function displayClusters(city){
     $('.cluster-btn').css({
       'opacity': 1
     });
-    
+
     $.ajax({
       async: true,
       url: crimeClusters[city],
