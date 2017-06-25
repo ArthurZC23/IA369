@@ -22,7 +22,7 @@ Our proposal is a webapp which display criminal data in a friendly and intuitive
 
 ## Datasets
 
-Currently the app has crime data for three cities: [San Francisco](https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki) (CA, US), [São Paulo](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR) and [Campinas](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR). The data was preprocessed to select only crimes that are relevant to tourists (e.g. assault is a crime relevant to tourists, while domestic violence is not). Furthermore, since all the project was written in English, the Brazilian crimes were translated to English.
+Currently the app has crime data for three cities: [San Francisco](https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki) (CA, US), [São Paulo](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR) and [Campinas](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR). The data was preprocessed to select only crimes that are relevant to tourists (e.g. assault is a crime relevant to tourists, while domestic violence is not). Furthermore, since all the project was written in English, the Brazilian crimes were translated to English. Also, Campinas and São Paulo datasets did not include latitude and longitude, so Google Maps Geocoding API was used to get these informations from the available address of the crime.
 The final data is a list of JSON objects with the following fields:
 
 * Category: type of crime
@@ -42,8 +42,9 @@ The project was developed using:
 * Google maps API
 * D3 - deprecated in the final version
 * Highcharts
-* JSON blobs 
-* **More**
+* JSON blobs
+* Bootstrap
+* JQuery
 
 ## Lessons learned
 
@@ -54,6 +55,8 @@ At the end of every project it's important to look back and reflect on the most 
 * JSON blobs is an excellent way of storing your data to test your client, without needing a backend or storing the data at the client
 * Google maps API provide several functionalities which are worth to take a look. In our project we used heatmaps, style maps, colored circles, personalized markers, animations and information windows. There are a lot of other useful and fun functionalities. We encourage taking a look at the [development page] https://developers.google.com/maps/
 * This quality of this project is a direct consequence of the quality of the data. We can see a large difference between the quality of the data for San Francisco (the better dataset) and Campinas (the worst dataset).
+* Google Maps Geocoding API can give you a non expected pair of latitude and longitude because there are similar addresses names in different cities. Pay attention to filter your data after getting the latitude and longitude or you may add wrong data to your map. It is easy to identify wrong points if you activate the heatmap and start to zoom out the map.
+
 
 ## Working with Google Maps API
 
