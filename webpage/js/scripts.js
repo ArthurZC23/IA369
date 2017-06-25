@@ -94,22 +94,22 @@ function cityChange() {
 
 function displayInfo(){
   var details = document.getElementById('details');
-  if(details.style.width != "0px"){
-    document.getElementById('map').style.width = "100%";
-    document.getElementById('details').style.width = "0px";
+  if ($('#details').css('width') !== "0px") {
+    $('#map').css('width', '100%');
+    $('#details').css('width', '0px');
     $('.stat-btn').css({
       'opacity': 0.4
     });
 
   }
-  else{
-    document.getElementById('map').style.width = "55%";
-    document.getElementById('details').style.width = "45%"
+  else {
+    $('#map').css('width', '55%');
+    $('#details').css('width', '45%');
     $('.stat-btn').css({
       'opacity': 1
     });
   }
-    google.maps.event.trigger(map, "resize");
+  google.maps.event.trigger(map, "resize");
 }
 
 function myMap() {
