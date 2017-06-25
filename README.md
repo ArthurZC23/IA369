@@ -27,6 +27,23 @@ Currently the app has crime data for three cities: [San Francisco](https://data.
 
 The JSON files are stores as blobs at [JSON Blob](https://jsonblob.com/). In case of very big json files, the site can stop responding if simply copy and paste the json directly in their text editor. Therefore, we provided a [Python script]() which takes a JSON blob as inputs and split it in smaller pieces.
 
+## Working with Google Maps API
+
+For economical and safety reasons, we are not going to share this project with our own Google API Key. It will be available until July 25th,2017. After this, you need to:
+
+1. Visit your [APIs Console Website](https://code.google.com/apis/console) 
+2. Click in 'Products and Services' on the top left.
+3. Click on 'API Manager'.
+4. Activate 'Google Street View Image API', 'Google Places API Web Service' and 'Google Maps JavaScript API'.
+5. Click in 'Credentials' in the left side menu.
+6. Generate a new Credential and copy your Google API Key.
+7. Change HTML code line 49 to insert your key like the following:
+
+```html
+src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE&libraries=visualization,places&callback=myMap">
+
+```
+
 ## How to add new data
 
 In case you want to add new data to this project, the procedure is very simple:
