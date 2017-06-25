@@ -47,32 +47,6 @@ The final data is a list of JSON objects with the following fields:
 
 The JSON files are stores as blobs at [JSON Blob](https://jsonblob.com/). In case of very big JSON files, the site can stop responding if simply copy and paste the JSON directly in their text editor. Therefore, we provided a [Python script](https://github.com/ArthurZC23/IA369/blob/master/utils/blobs.py) which takes a JSON blob as inputs and split it in smaller pieces.
 
-## Technologies used
-
-The project was developed using:
-
-* R
-* Python
-* HTML/CSS/Javascript
-* Google maps API
-* D3 - deprecated in the final version
-* Highcharts
-* JSON blobs
-* Bootstrap
-* JQuery
-
-## Lessons learned
-
-At the end of every project it's important to look back and reflect on the most important lessons learned. In this particular example, we learned:
-
-* It is easy to use a D3 template for visualization. But it can be more challenging to alter some parts of the chart without introducing bugs or visual glitches.
-* Highcharts provides a more friendly interface to build visualization. You can start from a template and tweak as you like in minutes, because of its friendly interface
-* JSON blobs is an excellent way of storing your data to test your client, without needing a backend or storing the data at the client
-* Google maps API provide several functionalities which are worth to take a look. In our project we used heatmaps, style maps, colored circles, personalized markers, animations and information windows. There are a lot of other useful and fun functionalities. We encourage people to take a look at the [development page] https://developers.google.com/maps/
-* The quality of Walking safe is a direct consequence of the quality of the data. We can see a large difference between the quality of the data for San Francisco (the better dataset) and Campinas (the worst dataset).
-* Google Maps Geocoding API can give you a non expected pair of latitude and longitude because there are similar addresses names in different cities. Pay attention to filter your data after getting the latitude and longitude or you may add wrong data to your map. It is easy to identify wrong points if you activate the heatmap and start to zoom out the map.
-
-
 ## Working with Google Maps API
 
 For economical and safety reasons, we are not going to share this project with our own Google API Key. It will be available until July 25th,2017. After this, you need to:
@@ -97,14 +71,37 @@ In case you want to add new data to this project, the procedure is very simple:
 1. Get some crime data about a city. The data must have the following fields: type of crime, latitude and longitude.
 2. Pre-process the data to select only the types of crimes you think are relevant to tourists
 3. Add the severity of each type of crime
-4. Save the data as a JSON object
-5. Split the JSON into smaller blobs, case need it
-6. Upload the JSON blobs at [JSON Blob](https://jsonblob.com/)
-7. Update crimeUrl with the JSON blobs URLs
+4. Save crime data as a JSON 
+5. Create crime clusters JSON using the crime data JSON and the [cluster script](https://github.com/ArthurZC23/IA369/blob/master/utils/clusters.py) available at this repo
+5. Split the crime data JSON into smaller blobs, case need it
+6. Upload the JSON blobs at [JSON Blob](https://jsonblob.com/) for the crime data and for the clusters
+7. Update crimeUrl with the JSON blobs URLs of the crime data
+8. Update crimeClusters with the JSON blob URL of the new clusters
 
+## Technologies used
 
+The project was developed using:
 
+* R
+* Python
+* HTML/CSS/Javascript
+* Google maps API
+* D3 - deprecated in the final version
+* Highcharts
+* JSON blobs
+* Bootstrap
+* JQuery
 
+## Lessons learned
+
+At the end of every project it's important to look back and reflect on the most important lessons learned. In this particular example, we learned:
+
+* It is easy to use a D3 template for visualization. But it can be more challenging to alter some parts of the chart without introducing bugs or visual glitches.
+* Highcharts provides a more friendly interface to build visualization. You can start from a template and tweak as you like in minutes, because of its friendly interface
+* JSON blobs is an excellent way of storing your data to test your client, without needing a backend or storing the data at the client
+* Google maps API provide several functionalities which are worth to take a look. In our project we used heatmaps, style maps, colored circles, personalized markers, animations and information windows. There are a lot of other useful and fun functionalities. We encourage people to take a look at the [development page] https://developers.google.com/maps/
+* The quality of Walking safe is a direct consequence of the quality of the data. We can see a large difference between the quality of the data for San Francisco (the better dataset) and Campinas (the worst dataset).
+* Google Maps Geocoding API can give you a non expected pair of latitude and longitude because there are similar addresses names in different cities. Pay attention to filter your data after getting the latitude and longitude or you may add wrong data to your map. It is easy to identify wrong points if you activate the heatmap and start to zoom out the map.
 
 ## Future improvements
 
