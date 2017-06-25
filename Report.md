@@ -32,8 +32,6 @@ The final data is a list of JSON objects with the following fields:
 
 The JSON files are stores as blobs at [JSON Blob](https://jsonblob.com/). In case of very big json files, the site can stop responding if simply copy and paste the json directly in their text editor. Therefore, we provided a [Python script](https://github.com/ArthurZC23/IA369/blob/master/utils/blobs.py) which takes a JSON blob as inputs and split it in smaller pieces.
 
-
-
 ## Technologies used
 
 The project was developed using:
@@ -47,8 +45,15 @@ The project was developed using:
 * JSON blobs
 * **More**
 
-## Data
+## Lessons learned
 
+At the end of every project is important to look back and reflect on the most important lessons learned. In this particular example, we learned:
+
+* It is easy to use a D3 template for visualization. But it can be more challenging to alter some parts of the chart without introducing bugs or visual glitches.
+* Highcharts provides a more friendly interface to build visualization. You can start from a template and tweak as you like in minutes, because of its friendly interface
+* JSON blobs is an excellent way of storing your data, without needing a backend or storing the data at the client
+* Google maps API provide several functionalities which are worth to take a look. In our project we used heatmaps, style maps, colored circles, personalized markers, animations and information windows. There are a lot of other useful and fun functionalities. We encourage taking a look at the [development page] https://developers.google.com/maps/
+* This quality of this project is a direct consequence of the quality of the data. We can see a large difference between the quality of the data for San Francisco (the better dataset) and Campinas (the worst dataset).
 
 ## Working with Google Maps API
 
@@ -79,7 +84,7 @@ In case you want to add new data to this project, the procedure is very simple:
 6. Upload the JSON blobs at [JSON Blob](https://jsonblob.com/)
 7. Update crimeUrl with the JSON blobs URLs
 
-## Lessons learned
+
 
 
 
