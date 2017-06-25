@@ -32,7 +32,7 @@ Check it out the webapp for yourself right [here](https://arthurzc23.github.io/I
 3. Store crimes in [json blobs](https://jsonblob.com/).
 4. Style google maps.
 5. Add information section, with more detailed statistics about the crime in the city and its streets.
-6. Add a photo slideshow with images of the local region inside the safety circle.
+6. Add a photo slideshow with images of the streets inside the safety circle.
 7. Add cluster button, which display from 1 to 10 cluster criminal points.
 
 ## Datasets
