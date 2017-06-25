@@ -68,8 +68,8 @@ At the end of every project it's important to look back and reflect on the most 
 * It is easy to use a D3 template for visualization. But it can be more challenging to alter some parts of the chart without introducing bugs or visual glitches.
 * Highcharts provides a more friendly interface to build visualization. You can start from a template and tweak as you like in minutes, because of its friendly interface
 * JSON blobs is an excellent way of storing your data to test your client, without needing a backend or storing the data at the client
-* Google maps API provide several functionalities which are worth to take a look. In our project we used heatmaps, style maps, colored circles, personalized markers, animations and information windows. There are a lot of other useful and fun functionalities. We encourage taking a look at the [development page] https://developers.google.com/maps/
-* This quality of this project is a direct consequence of the quality of the data. We can see a large difference between the quality of the data for San Francisco (the better dataset) and Campinas (the worst dataset).
+* Google maps API provide several functionalities which are worth to take a look. In our project we used heatmaps, style maps, colored circles, personalized markers, animations and information windows. There are a lot of other useful and fun functionalities. We encourage people to take a look at the [development page] https://developers.google.com/maps/
+* The quality of Walking safe is a direct consequence of the quality of the data. We can see a large difference between the quality of the data for San Francisco (the better dataset) and Campinas (the worst dataset).
 * Google Maps Geocoding API can give you a non expected pair of latitude and longitude because there are similar addresses names in different cities. Pay attention to filter your data after getting the latitude and longitude or you may add wrong data to your map. It is easy to identify wrong points if you activate the heatmap and start to zoom out the map.
 
 
