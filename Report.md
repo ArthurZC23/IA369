@@ -2,30 +2,53 @@
 
 Walking safe is a interactive visualization tool to help tourist to navigate safely in new cities. It uses open criminal data to inform tourists which locations may be dangerous zones.
 
-## Overview
+## Motivation
 
-Do after finish the app
+When planning trips to new places, tourists don't have the habit of looking for possible risks in the region. As a result, tourists can end up in dangerous places and become crime victims. To avoid this scenario we created Walking Safe, a web visualization tool with the task of helping tourists to navigate safely.
 
-## [Webapp]()
+## Proposal
 
-## Technologies used
+Our proposal is a webapp which display criminal data in a friendly and intuitive manner in a map. We took criminal data available in public repositories, parsed tourist relevant crimes and made available to the public. The webapp has a simple interface for helping toursist to have an overview of the crimes in the city or to zoom and get details about a specific region.
 
-v1.0.0 is a client side webapp made with javascript. We used the following libraries in the app:
+## Development stages
 
-* Google maps API
-* D3
-* **More**
+1. Merge the functionalities of the three T3 assignements of IA369 made by the authors. The functionalities were the safety circle, the heatmap and the filter buttons
+2. Add more cities to the project (São Paulo and Campinas)
+3. Store crimes in [json blobs](https://jsonblob.com/)
+4. Style google maps
+5. Add information section which more detailed statistics about the crime in the city and its streets
+6. Add photo slideshow with images of the local region inside the safety circle.
+7. Add cluster button, which display from 1 to 10 cluster criminal points.
 
-## Data
+## Datasets
 
-Currently the app has crime data for three cities: [San Francisco](https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki) (CA, US), [São Paulo](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR) and [Campinas](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR). The data was preprocessed to select only crimes relevants for tourists (e.g. assault is a crime relevant to tourists, while domestic violence is not). The final data is a list of JSON objects with the following fields:
+Currently the app has crime data for three cities: [San Francisco](https://data.sfgov.org/Public-Safety/Police-Department-Incidents-Previous-Year-2016-/ritf-b9ki) (CA, US), [São Paulo](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR) and [Campinas](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) (SP, BR). The data was preprocessed to select only crimes relevants for tourists (e.g. assault is a crime relevant to tourists, while domestic violence is not). Furthermore, since all the project was written in english, the brazilian crimes were translated to english.
+The final data is a list of JSON objects with the following fields:
 
 * Category: type of crime
 * lat: latitude of the crime occurrence
 * lng: longitude of the crime occurrence
-* Severity: severity of the crime
+* Severity: severity of the crime (This is a binary attribute, which can be "LOW" or "HIGH")
 
-The JSON files are stores as blobs at [JSON Blob](https://jsonblob.com/). In case of very big json files, the site can stop responding if simply copy and paste the json directly in their text editor. Therefore, we provided a [Python script]() which takes a JSON blob as inputs and split it in smaller pieces.
+The JSON files are stores as blobs at [JSON Blob](https://jsonblob.com/). In case of very big json files, the site can stop responding if simply copy and paste the json directly in their text editor. Therefore, we provided a [Python script](https://github.com/ArthurZC23/IA369/blob/master/utils/blobs.py) which takes a JSON blob as inputs and split it in smaller pieces.
+
+
+
+## Technologies used
+
+The project was developed using:
+
+* R
+* Python
+* HTML/CSS/Javascript
+* Google maps API
+* D3 - deprecated in the final version
+* Highcharts
+* JSON blobs
+* **More**
+
+## Data
+
 
 ## Working with Google Maps API
 
