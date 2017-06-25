@@ -51,7 +51,7 @@ At the end of every project is important to look back and reflect on the most im
 
 * It is easy to use a D3 template for visualization. But it can be more challenging to alter some parts of the chart without introducing bugs or visual glitches.
 * Highcharts provides a more friendly interface to build visualization. You can start from a template and tweak as you like in minutes, because of its friendly interface
-* JSON blobs is an excellent way of storing your data, without needing a backend or storing the data at the client
+* JSON blobs is an excellent way of storing your data to test your client, without needing a backend or storing the data at the client
 * Google maps API provide several functionalities which are worth to take a look. In our project we used heatmaps, style maps, colored circles, personalized markers, animations and information windows. There are a lot of other useful and fun functionalities. We encourage taking a look at the [development page] https://developers.google.com/maps/
 * This quality of this project is a direct consequence of the quality of the data. We can see a large difference between the quality of the data for San Francisco (the better dataset) and Campinas (the worst dataset).
 
@@ -90,7 +90,14 @@ In case you want to add new data to this project, the procedure is very simple:
 
 ## Future improvements
 
+The first major improvement that the tool need is **more quality criminal datasets**. Other important improvements are:
 
+* Optimize the javascript code
+* Migrate the criminal data from blobs to a proper backend
+* Add time based filter (select crimes based on months or years)
+* Build a mobile version
+* Put GPS integration into the mobile version, to warn the user when he is near a very dangerous place
+* Let users input crime data (debatable)
 
 ## Inspiration
 
