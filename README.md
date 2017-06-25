@@ -120,6 +120,11 @@ The first major improvement that the tool need is **more quality criminal datase
 
 Walking safe is a capstone project for the discipline IA369, based on Alexandre Lopes following [R notebook](https://rpubs.com/alelopes/sf_crime_4tourists).
 
+## License
+
+See the [LICENSE](https://github.com/ArthurZC23/IA369/blob/master/LICENSE) file for license rights and limitations (MIT).
+
+
 ## Authors
 
 * Alexandre Lopes RA: 115968
