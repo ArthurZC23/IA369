@@ -15,7 +15,7 @@ Our proposal is a webapp which display criminal data in a friendly and intuitive
 Walking safe possess the following functionalities:
 
 * A dropdown menu to select the desired city
-* A click event on the map, which adds a marker and a safety cricle around it. From the color of the safety circle, the user can have an idea of the level of danger around that marker address.
+* A click event on the map, which adds a marker and a safety circle with 1km radius around it. From the color of the safety circle, the user can have an idea of the level of danger around that marker address.
 * Two filter buttons to display heatmaps with low severty crimes, high severity crimes or both
 * A cluster button to display crime clusters. Clicking on the cluster shows additional information about it
 * A display info button, which opens a tab where the top 5 crimes in the city/safety radius region are shown in a bar chart. Moreover the chart shows the date of the dataset as subtitle and has a link to the page of the original dataset in the credits. Finally, right below the chart there is a photo slideshow showing google pictures of the streets inside the safety radius
@@ -44,6 +44,8 @@ The final data is a list of JSON objects with the following fields:
 * lat: latitude of the crime occurrence
 * lng: longitude of the crime occurrence
 * Severity: severity of the crime (This is a binary attribute, which can be "LOW" or "HIGH")
+
+Severity was classified in the following way: If the crime type involves person-to-person interaction with force, intimidation, and/or coercion, than it is a High Severy Crime. If it does not involves person-to-person interection, it is a Low Severity Crime.
 
 The JSON files are stores as blobs at [JSON Blob](https://jsonblob.com/). In case of very big JSON files, the site can stop responding if simply copy and paste the JSON directly in their text editor. Therefore, we provided a [Python script](https://github.com/ArthurZC23/IA369/blob/master/utils/blobs.py) which takes a JSON blob as inputs and split it in smaller pieces.
 
