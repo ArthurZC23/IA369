@@ -73,10 +73,10 @@ In case you want to add new data to this project, the procedure is very simple:
 3. Add the severity of each type of crime
 4. Save crime data as a JSON 
 5. Create crime clusters JSON using the crime data JSON and the [cluster script](https://github.com/ArthurZC23/IA369/blob/master/utils/clusters.py) available at this repo
-5. Split the crime data JSON into smaller blobs, case need it
-6. Upload the JSON blobs at [JSON Blob](https://jsonblob.com/) for the crime data and for the clusters
-7. Update crimeUrl with the JSON blobs URLs of the crime data
-8. Update crimeClusters with the JSON blob URL of the new clusters
+6. Split the crime data JSON into smaller blobs with [blobs script](https://github.com/ArthurZC23/IA369/blob/master/utils/blobs.py), case need it
+7. Upload the JSON blobs at [JSON Blob](https://jsonblob.com/) for the crime data and for the clusters
+8. Update crimeUrl with the JSON blobs URLs of the crime data
+9. Update crimeClusters with the JSON blob URL of the new clusters
 
 ## Technologies used
 
