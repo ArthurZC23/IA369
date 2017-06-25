@@ -18,7 +18,8 @@ Walking safe possess the following functionalities:
 * A click event on the map, which adds a marker and a safety cricle around it. From the color of the safety circle, the user can have an idea of the level of danger around that marker address.
 * Two filter buttons to display heatmaps with low severty crimes, high severity crimes or both
 * A cluster button to display crime clusters. Clicking on the cluster shows additional information about it
-* A display info button, which opens a tab where the top 5 crimes in the city/safety radius region are shown in a bar chart. Moreover the chart shows the date of the dataset as subtitle and has a link to the page of the original dataset in the credits. Finally, right below the chart there is a photo slideshow showing google pictures of the streets inside the safety radius.
+* A display info button, which opens a tab where the top 5 crimes in the city/safety radius region are shown in a bar chart. Moreover the chart shows the date of the dataset as subtitle and has a link to the page of the original dataset in the credits. Finally, right below the chart there is a photo slideshow showing google pictures of the streets inside the safety radius
+* User can choose from different map styles
 
 ## Wepapp
 
