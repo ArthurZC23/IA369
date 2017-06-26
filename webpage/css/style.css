@@ -33,6 +33,9 @@ img {
 #logo {
     color: white;
     text-shadow: 2px 2px 5px black;
+    position: fixed;
+    top: 80%;
+    font-size: 40px;
 }
 
 #dropdown {
@@ -76,7 +79,8 @@ img {
 
 .buttonAbout {
     position:fixed;
-    top:88%;
+    top:82%;
+    right: 78%;
 }
 
 .buttonDisplay {
