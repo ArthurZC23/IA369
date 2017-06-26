@@ -79,6 +79,7 @@ In case you want to add new data to this project, the procedure is very simple:
 7. Upload the JSON blobs at [JSON Blob](https://jsonblob.com/) for the crime data and for the clusters
 8. Update crimeUrl with the JSON blobs URLs of the crime data
 9. Update crimeClusters with the JSON blob URL of the new clusters
+10. Update crimeDataSource with the original source of the criminal data
 
 ## Technologies used
 
