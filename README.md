@@ -1,3 +1,5 @@
+[## Webapp](https://arthurzc23.github.io/IA369/webpage/)
+
 # Walking safe
  
 Walking safe is an interactive visualization tool to help tourists to navigate safely in new cities. It uses open criminal data to inform tourists which locations may be dangerous zones.
@@ -20,10 +22,6 @@ Walking safe possess the following functionalities:
 * A cluster button to display crime clusters. Clicking on the cluster shows additional information about it
 * A display info button, which opens a tab where the top 5 crimes in the city/safety radius region are shown in a bar chart. Moreover the chart shows the date of the dataset as subtitle and has a link to the page of the original dataset in the credits. Finally, right below the chart there is a photo slideshow showing google pictures of the streets inside the safety radius
 * User can choose from different map styles
- 
-## Webapp
- 
-Check it out the webapp for yourself right [here](https://arthurzc23.github.io/IA369/webpage/)
  
 ## Development stages
  
