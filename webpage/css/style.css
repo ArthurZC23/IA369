@@ -30,6 +30,14 @@ img {
     height: inherit;
 }
 
+#logo {
+    color: white;
+    text-shadow: 2px 2px 5px black;
+    position: fixed;
+    top: 80%;
+    font-size: 40px;
+}
+
 #dropdown {
     background: #EEEEEE;
     width: auto;
@@ -71,7 +79,8 @@ img {
 
 .buttonAbout {
     position:fixed;
-    top:88%;
+    top:82%;
+    right: 78%;
 }
 
 .buttonDisplay {
