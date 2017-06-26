@@ -79,9 +79,8 @@ In case you want to add new data to this project, the procedure is very simple:
 5. Create crime clusters JSON using the crime data JSON and the [cluster script](https://github.com/ArthurZC23/IA369/blob/master/utils/clusters.py) available at this repo
 6. Split the crime data JSON into smaller blobs with [blobs script](https://github.com/ArthurZC23/IA369/blob/master/utils/blobs.py), case need it
 7. Upload the JSON blobs at [JSON Blob](https://jsonblob.com/) for the crime data and for the clusters
-8. Update crimeUrl with the JSON blobs URLs of the crime data
-9. Update crimeClusters with the JSON blob URL of the new clusters
-10. Update crimeDataSource with the original source of the criminal data
+8. Add the city name in the index.html select tag
+9. Update crime and city variables at the script.js
  
 ## Technologies used
  
