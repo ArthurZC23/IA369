@@ -1,8 +1,12 @@
-[## Webapp](https://arthurzc23.github.io/IA369/webpage/)
+
 
 # Walking safe
  
 Walking safe is an interactive visualization tool to help tourists to navigate safely in new cities. It uses open criminal data to inform tourists which locations may be dangerous zones.
+ 
+## Webapp
+
+Check it out for yourself right [here](https://arthurzc23.github.io/IA369/webpage/)
  
 ## Motivation
  
