@@ -34,8 +34,8 @@ img {
     color: white;
     text-shadow: 2px 2px 5px black;
     position: fixed;
-    top: 80%;
-    font-size: 40px;
+    top: 20%;
+    font-size: 24px;
  }
 
 #dropdown {
