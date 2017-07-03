@@ -6,7 +6,7 @@ Walking safe is an interactive visualization tool to help tourists to navigate s
  
 ## Webapp
 
-Check it out for yourself right [here](https://arthurzc23.github.io/IA369/webpage/)
+Check it out for yourself right [here](https://arthurzc23.github.io/Walking-Safe/webpage/)
  
 ## Motivation
  
